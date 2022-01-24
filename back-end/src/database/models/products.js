@@ -7,8 +7,8 @@ module.exports = (sequelize, DataTypes) => {
       url_image: DataTypes.STRING,
     },
     {
-      sequelize,
-      modelName: "products",
+      timestamps: false,
+      tableName: "products",
     }
   );
 
