@@ -14,4 +14,6 @@ module.exports = (sequelize, DataTypes) => {
       tableName: "sales",
     }
   );
+
+  return Sales;
 };
