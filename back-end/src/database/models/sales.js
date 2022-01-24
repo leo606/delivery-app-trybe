@@ -16,14 +16,14 @@ module.exports = (sequelize, DataTypes) => {
   );
 
   Sales.associate = (models) => {
-    Sales.belongsTo(models.Users, {
+    Sales.belongsTo(models.users, {
       foreignKey: "user_id",
       as: "user",
     });
 
-    Sales.belongsTo(models.Users, {
+    Sales.belongsTo(models.users, {
       foreignKey: "seller_id",
-      as: "user",
+      as: "seller",
     });
   };
 
