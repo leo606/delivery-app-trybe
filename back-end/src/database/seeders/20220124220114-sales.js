@@ -11,7 +11,7 @@ module.exports = {
           total_price: 99.9,
           delivery_address: "address",
           delivery_number: "23",
-          sale_date: Date.now(),
+          sale_date: new Date(Date.now()),
           status: "ordered",
         },
         {
@@ -20,7 +20,7 @@ module.exports = {
           total_price: 99.9,
           delivery_address: "address two",
           delivery_number: "345",
-          sale_date: Date.now(),
+          sale_date: new Date(Date.now()),
           status: "ordered",
         },
         {
@@ -29,7 +29,7 @@ module.exports = {
           total_price: 99.9,
           delivery_address: "address three",
           delivery_number: "7",
-          sale_date: Date.now(),
+          sale_date: new Date(Date.now()),
           status: "finished",
         },
       ],
