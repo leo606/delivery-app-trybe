@@ -2,7 +2,9 @@ const model = require('../../database/models');
 
 module.exports = async ({ email, password }) => {
   try {
-    const user = await model.users.findOne({ where: { email, password } });
+    const user = await model.users.findOne({
+      where: { email, password },
+    });
     if (!user) {
       return { err: { code: 'notFound' } };
     }
