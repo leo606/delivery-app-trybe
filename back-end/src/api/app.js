@@ -4,9 +4,10 @@ const model = require('../database/models');
 const app = express();
 
 app.get('/coffee', async (_req, res) => {
-  const users = await model.sales.findAll({
+  const users = await model.users.findAll({
     include: [
-      { model: model.users, as: 'user' },
+      { model: model.sales, as: 'userSales' },
+      { model: model.sales, as: 'sellerSales' },
     ],
   });
   res.status(200).json(users);
