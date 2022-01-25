@@ -45,8 +45,8 @@ function Login() {
 
   return (
     <div id="loginComponent">
-      <form id="loginForm">
-        <div id="inputs">
+      <form id="loginForm" className="loginForm">
+        <div id="inputs" className="inputs">
           <input
             type="email"
             data-testid="common_login__input-email"
@@ -64,7 +64,8 @@ function Login() {
             onChange={ handleChange }
           />
         </div>
-        <div id="buttons">
+
+        <div id="buttons" className="buttons">
           <button
             type="submit"
             data-testid="common_login__button-login"
@@ -84,6 +85,7 @@ function Login() {
       </form>
       <p
         id="warning"
+        className="warning"
         data-testid="common_login__element-invalid-email"
         style={ { display: warning } }
       >
