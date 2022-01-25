@@ -38,6 +38,7 @@ function Login() {
             onChange={ handleChange }
           />
         </div>
+
         <div id="buttons" className="buttons">
           <button
             type="submit"

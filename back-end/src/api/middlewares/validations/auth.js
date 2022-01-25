@@ -11,7 +11,6 @@ const jwtConfig = {
 module.exports = async (req, res, next) => {
   try {
     const user = await get(req.user);
-    console.log(user);
     if (user.err) {
       next({ ...user.err });
     }
