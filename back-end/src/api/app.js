@@ -1,6 +1,6 @@
 const express = require('express');
 const model = require('../database/models');
-const createRouter  = require('../controller/users/create');
+const createRouter = require('../controller/users/create');
 const error = require('./middlewares/erros/error');
 
 const app = express();
