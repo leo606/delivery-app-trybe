@@ -8,7 +8,7 @@ module.exports = async ({ email, password }) => {
     if (!user) {
       return { err: { code: 'notFound' } };
     }
-    return user;
+    return user.dataValues;
   } catch (e) {
     console.log(e);
   }
