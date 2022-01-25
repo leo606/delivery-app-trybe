@@ -1,6 +1,6 @@
-module.exports = async (_req, res, _next) => {
+module.exports = async (req, res, _next) => {
   try {
-    res.status(501).end();
+    res.status(200).json(req.user);
   } catch (e) {
     console.log(e);
   }
