@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
-import user from './user';
+import token from './token';
 import registerReducer from './register';
 
 const rootReducer = combineReducers({
-  user,
   registerReducer,
+  token,
 });
 
 export default rootReducer;

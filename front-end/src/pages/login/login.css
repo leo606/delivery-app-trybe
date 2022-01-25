@@ -1,0 +1,33 @@
+.loginForm {
+  align-items: center;
+  display: flex;
+  flex-flow: column nowrap;
+  height: 150px;
+  justify-content: space-evenly;
+  margin: auto;
+  width: 25%;
+}
+
+.buttons {
+  display: flex;
+  flex-flow: column nowrap;
+  height: 60px;
+  justify-content: space-evenly;
+  width: 200px;
+}
+
+.inputs {
+  align-content: center;
+  display: flex;
+  flex-flow: column nowrap;
+  height: 60px;
+  justify-content: space-evenly;
+  width: 150px;
+}
+
+.warning {
+  color: #ee230c;
+  font-size: 12px;
+  text-align: center;
+}
+
