@@ -1,17 +1,17 @@
-#loginComponent {
+.loginComponent {
   margin-top: 150px;
 }
 
 .loginForm {
   align-items: center;
+  background-color: #44b2c0;
+  border-radius: 8%;
   display: flex;
   flex-flow: column nowrap;
   height: 200px;
   justify-content: space-evenly;
   margin: auto;
   width: 25%;
-  background-color: #44b2c0;
-  border-radius: 8%;
 }
 
 .buttons {

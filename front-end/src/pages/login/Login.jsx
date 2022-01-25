@@ -44,7 +44,7 @@ function Login() {
   }, [token, role, err, navigate]);
 
   return (
-    <div id="loginComponent">
+    <div className="loginComponent">
       <form id="loginForm" className="loginForm">
         <div id="inputs" className="inputs">
           <input
