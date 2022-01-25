@@ -1,10 +1,10 @@
-import { GET_TOKEN } from '../actions/login/getToken';
+import { GET_AUTH } from '../actions/login/getToken';
 
 const INITIAL_STATE = false;
 
-const token = (state = INITIAL_STATE, action) => {
+const auth = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-  case GET_TOKEN: {
+  case GET_AUTH: {
     const newState = action.payload;
     return newState;
   }
@@ -13,4 +13,4 @@ const token = (state = INITIAL_STATE, action) => {
   }
 };
 
-export default token;
+export default auth;

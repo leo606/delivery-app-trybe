@@ -1,8 +1,15 @@
 import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { loginValidate } from '../../helpers/formValidations';
+import { requestToken } from '../../redux/actions/login/getToken';
+import { getUser } from '../../redux/actions/user/getUser';
 import './login.css';
 
 function Login() {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const auth = useSelector((state) => state.auth);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [warning, setWarning] = useState('none');
@@ -14,7 +21,15 @@ function Login() {
 
   const loginButton = (e) => {
     e.preventDefault();
-    if (warning === 'none') setWarning('block');
+    dispatch(requestToken({ email, password }));
+    dispatch(getUser({ email }));
+    console.log(auth);
+    setWarning('block');
+  };
+
+  const registerButton = (e) => {
+    e.preventDefault();
+    navigate('/register');
   };
 
   return (
@@ -47,7 +62,11 @@ function Login() {
           >
             LOGIN
           </button>
-          <button type="button" data-testid="common_login__button-register">
+          <button
+            type="button"
+            data-testid="common_login__button-register"
+            onClick={ registerButton }
+          >
             Ainda não tenho conta
           </button>
         </div>
