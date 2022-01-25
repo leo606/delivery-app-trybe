@@ -1,7 +1,10 @@
 const express = require('express');
+const cors = require('cors');
 const error = require('./middlewares/errors/error');
 
 const app = express();
+
+app.use(cors());
 
 app.use(express.json());
 
