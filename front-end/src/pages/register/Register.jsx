@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 import { NEW_REGISTER, POST_REGISTER } from '../../redux/reducers/register';
-import Input from '../../components/input';
 
 function Register() {
   const userData = useSelector((state) => state.registerReducer);
@@ -24,11 +23,11 @@ function Register() {
 
   async function postRegister() {
     dispatch({ type: POST_REGISTER });
-    const result = async () => axios.post('http://localhost:3001/register', {
+    const result =  () => axios.post('http://localhost:3001/register', {
       userData,
     });
 
-    console.log(result());
+    console.log(result().data);
     // {type: API_SUCESS}
     // {type: API_ERROR}
   }
@@ -42,7 +41,7 @@ function Register() {
   return (
     <div>
       <form onSubmit={ handleSubmit }>
-        <Input
+        <input
           type="text"
           testId="common_register__input-name"
           placeholder="Seu nome"
@@ -50,7 +49,7 @@ function Register() {
           name="name"
           onChange={ handleChange }
         />
-        <Input
+        <input
           type="email"
           testId="common_register__input-email"
           placeholder="email@tryber.com.br"
@@ -58,7 +57,7 @@ function Register() {
           name="email"
           onChange={ handleChange }
         />
-        <Input
+        <input
           type="password"
           testId="common_register__input-password"
           placeholder="********"
@@ -72,7 +71,6 @@ function Register() {
         <span data-testid="common_register__element-invalid_register ">
           Dados invalidios
         </span>
-        <button type="button" onClick={ () => console.log(userData) }>redux</button>
       </form>
     </div>
   );
