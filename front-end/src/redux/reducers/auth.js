@@ -1,4 +1,4 @@
-import { GET_AUTH } from '../actions/login/getToken';
+import { GET_AUTH } from '../actions/login/getAuth';
 
 const INITIAL_STATE = false;
 

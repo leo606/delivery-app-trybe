@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { loginValidate } from '../../helpers/formValidations';
-import { requestToken } from '../../redux/actions/login/getToken';
+import { requestAuth } from '../../redux/actions/login/getAuth';
 import { getUser } from '../../redux/actions/user/getUser';
 import './login.css';
 
@@ -21,7 +21,7 @@ function Login() {
 
   const loginButton = (e) => {
     e.preventDefault();
-    dispatch(requestToken({ email, password }));
+    dispatch(requestAuth({ email, password }));
     dispatch(getUser({ email }));
   };
 
