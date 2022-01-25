@@ -1,6 +1,7 @@
 module.exports = async (req, res, _next) => {
   try {
-    res.status(200).json(req.user);
+    const { role, token } = req.user;
+    res.status(200).json({ role, token });
   } catch (e) {
     console.log(e);
   }
