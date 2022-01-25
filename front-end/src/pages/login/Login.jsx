@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import Input from '../../components/input';
 
 function Login() {
@@ -31,7 +32,9 @@ function Login() {
         />
         <button type="submit" data-testid="common_login__button-login">LOGIN</button>
         <button type="button" data-testid="common_login__button-register">
-          Ainda não tenho conta
+          <Link to="/register">
+            Ainda não tenho conta
+          </Link>
         </button>
       </form>
     </div>
