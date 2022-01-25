@@ -1,46 +1,33 @@
-#loginComponent {
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 150px;
-  width: 350px;
-  display: flex;
-  flex-direction: column;
-  justify-items: center;
-  background-color: #7aafac;
-}
-
-#loginForm {
-  margin-top: auto;
-  margin-bottom: auto;
-  margin-right: auto;
-  margin-left: auto;
-  width: 25%;
-  height: 150px;
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: space-evenly;
+.loginForm {
   align-items: center;
+  display: flex;
+  flex-flow: column nowrap;
+  height: 150px;
+  justify-content: space-evenly;
+  margin: auto;
+  width: 25%;
 }
 
-#buttons {
+.buttons {
+  display: flex;
+  flex-flow: column nowrap;
+  height: 60px;
+  justify-content: space-evenly;
   width: 200px;
-  height: 60px;
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: space-evenly;
 }
 
-#inputs {
-  width: 150px;
-  height: 60px;
-  display: flex;
-  flex-flow: column nowrap;
+.inputs {
   align-content: center;
+  display: flex;
+  flex-flow: column nowrap;
+  height: 60px;
   justify-content: space-evenly;
+  width: 150px;
 }
 
-#warning {
-  text-align: center;
-  font-size: 12px;
+.warning {
   color: #ee230c;
+  font-size: 12px;
+  text-align: center;
 }
+
