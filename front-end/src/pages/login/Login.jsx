@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { loginValidate } from '../../helpers/formValidations';
@@ -9,7 +9,7 @@ import './login.css';
 function Login() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const auth = useSelector((state) => state.auth);
+  const { token, role, err } = useSelector((state) => state.auth);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [warning, setWarning] = useState('none');
@@ -23,14 +23,25 @@ function Login() {
     e.preventDefault();
     dispatch(requestToken({ email, password }));
     dispatch(getUser({ email }));
-    console.log(auth);
-    setWarning('block');
   };
 
   const registerButton = (e) => {
     e.preventDefault();
     navigate('/register');
   };
+
+  useEffect(() => {
+    if (token && role === 'customer') {
+      navigate('/customer/products');
+    }
+    if (token && role === 'administrator') {
+      navigate('/admin/manage');
+    }
+    if (token && role === 'seller') {
+      navigate('/seller/orders');
+    }
+    if (err) setWarning('block');
+  }, [token, role, err, navigate]);
 
   return (
     <div id="loginComponent">
