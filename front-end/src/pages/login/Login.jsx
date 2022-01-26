@@ -35,7 +35,7 @@ function Login() {
       }
     } catch (err) {
       const { response } = err;
-      if (response.status === status.NOT_FOUND) setWarning('block');
+      if (response && response.status === status.NOT_FOUND) setWarning('block');
     }
   };
 
