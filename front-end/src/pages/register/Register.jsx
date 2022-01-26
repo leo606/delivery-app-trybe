@@ -1,15 +1,19 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useSelector, useDispatch } from 'react-redux';
-import { NEW_REGISTER, POST_REGISTER } from '../../redux/reducers/register';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import md5 from 'md5';
+import { getUser } from '../../redux/actions/user/getUser';
 
 function Register() {
-  const userData = useSelector((state) => state.registerReducer);
+  const navigate = useNavigate();
+
   const dispatch = useDispatch();
 
   const [fullName, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [warning, setWarning] = useState('none');
 
   function handleChange({ target: { value, name } }) {
     if (name === 'name') setName(value);
@@ -17,25 +21,42 @@ function Register() {
     if (name === 'password') setPassword(value);
   }
 
-  function newRegister() {
-    dispatch({ type: NEW_REGISTER, state: { name: fullName, email, password } });
-  }
-
   async function postRegister() {
-    dispatch({ type: POST_REGISTER });
-    const result =  () => axios.post('http://localhost:3001/register', {
-      userData,
+    const data = JSON.stringify({
+      name: fullName,
+      email,
+      password: md5(password),
     });
 
-    console.log(result().data);
-    // {type: API_SUCESS}
-    // {type: API_ERROR}
+    const config = {
+      method: 'post',
+      url: 'http://localhost:3001/register',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      data,
+    };
+
+    try {
+      const result = await axios(config);
+
+      return { data: result.data, status: result.status };
+    } catch (e) {
+      return null;
+    }
   }
 
   function handleSubmit(e) {
     e.preventDefault();
-    newRegister();
-    postRegister();
+    dispatch(getUser({ email }));
+
+    const returnApi = postRegister();
+    const created = 201;
+    if (returnApi.status !== created) {
+      setWarning('block');
+    } else {
+      return navigate('/products');
+    }
   }
 
   return (
@@ -43,7 +64,7 @@ function Register() {
       <form onSubmit={ handleSubmit }>
         <input
           type="text"
-          testId="common_register__input-name"
+          data-testid="common_register__input-name"
           placeholder="Seu nome"
           value={ fullName }
           name="name"
@@ -51,7 +72,7 @@ function Register() {
         />
         <input
           type="email"
-          testId="common_register__input-email"
+          data-testid="common_register__input-email"
           placeholder="email@tryber.com.br"
           value={ email }
           name="email"
@@ -59,19 +80,20 @@ function Register() {
         />
         <input
           type="password"
-          testId="common_register__input-password"
+          data-testid="common_register__input-password"
           placeholder="********"
           value={ password }
           name="password"
           onChange={ handleChange }
         />
+        {}
         <button type="submit" data-testid="common_register__button-register">
           REGISTER
         </button>
-        <span data-testid="common_register__element-invalid_register ">
-          Dados invalidios
-        </span>
       </form>
+      <span data-testid="common_register__element-invalid_register" display={ warning }>
+        Dados inválidos
+      </span>
     </div>
   );
 }
