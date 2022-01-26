@@ -1,13 +1,10 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 import md5Serialize from '../../helpers/md5Serialize';
-import { getUser } from '../../redux/actions/user/getUser';
 
 function Register() {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
 
   const [fullName, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -53,7 +50,6 @@ function Register() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    dispatch(getUser({ email }));
     if (postRegister()) navigate('/products');
   }
 
