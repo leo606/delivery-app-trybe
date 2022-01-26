@@ -1,4 +1,5 @@
 const crypto = require('crypto');
+const statusCodes = require('../../helpers/statusCodes.json');
 const { createUser } = require('../../services/register');
 
 module.exports = async (req, res, _next) => {
@@ -16,7 +17,7 @@ module.exports = async (req, res, _next) => {
       role,
     };
     await createUser(data);
-    res.status(201).end();
+    res.status(statusCodes.created).end();
   } catch (e) {
     console.log(e);
   }
