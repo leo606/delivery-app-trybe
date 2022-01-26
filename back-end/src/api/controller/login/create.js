@@ -1,4 +1,4 @@
-const statusCodes = require('../../helpers/statusCodes.json');
+const statusCodes = require('../../../helpers/statusCodes.json');
 
 module.exports = async (req, res, _next) => {
   try {

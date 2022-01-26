@@ -8,7 +8,7 @@ app.use(cors());
 
 app.use(express.json());
 
-app.use(require('../controller'));
+app.use(require('./controller'));
 
 app.use(error);
 
