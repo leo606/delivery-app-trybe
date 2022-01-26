@@ -1,23 +1,40 @@
+/* eslint-disable */
 const Sequelize = require('sequelize');
-const { sales } = require('../../database/models');
+const { sales, products } = require('../../database/models');
 
 const environment = process.env.NODE_ENV || 'test';
 const sequelizeConfig = require('../../database/config/config');
 
 const sequelize = new Sequelize(sequelizeConfig[environment]);
 
-// module.exports = async (sale) => {
-//   try {
-//     const transaction = await sequelize.transaction(async () => {
-//       // create sale
-//       const createSale = await sales.create
+module.exports = async ({ userId, sellerId, productsList, total }) => {
+  try {
+    const sale = {
+      user_id: userId,
+      seller_id: sellerId,
+      total_price: total,
+      delivery_address: "address",
+      delivery_number: "456456456",
+      sale_date: new Date(Date.now()),
+      status: "ordered",
+    }
 
-//       // add sales-products
-//     });
-//   } catch (e) {
-//     console.log(e);
-//   }
-// };
+    const listedProducts = await products.findAll({ where: {
+      id: { [Sequelize.Op.in]: productsList.map((prod)=> prod.id) },
+    } });
+
+    const create = await sequelize.transaction(async (transaction) => {
+      // create sale
+      const createSale = await sales.create(sale, { transaction });
+
+      // await createPost.addCategory(findCategories, { transaction });
+      await createSale.addProducts(listedProducts, { transaction });
+    });
+    return create;
+  } catch (e) {
+    console.log(e);
+  }
+};
 // sale from front:
 // {
 //   sellerId,
