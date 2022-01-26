@@ -1,15 +1,20 @@
-import React, { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { useState } from 'react';
+// import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import status from '../../helpers/status';
+import md5Serialize from '../../helpers/md5Serialize';
 import { loginValidate } from '../../helpers/formValidations';
-import { requestAuth } from '../../redux/actions/login/getAuth';
-import { getUser } from '../../redux/actions/user/getUser';
+// import { requestAuth } from '../../redux/actions/login/getAuth';
+// import { getUser } from '../../redux/actions/user/getUser';
 import './login.css';
+
+const LOGIN_URL = 'http://localhost:3001/login';
 
 function Login() {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const { token, role, err } = useSelector((state) => state.auth);
+  // const dispatch = useDispatch();
+  // const { token, role, err } = useSelector((state) => state.auth);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [warning, setWarning] = useState('none');
@@ -19,10 +24,26 @@ function Login() {
     if (name === 'password') setPassword(value);
   };
 
-  const loginButton = (e) => {
-    e.preventDefault();
-    dispatch(requestAuth({ email, password }));
-    dispatch(getUser({ email }));
+  const loginButton = async (e) => {
+    try {
+      e.preventDefault();
+      // dispatch(requestAuth({ email, password }));
+      // dispatch(getUser({ email }));
+      const passwordMd5 = md5Serialize(password);
+      const res = await axios.post(LOGIN_URL, {
+        email,
+        password: passwordMd5,
+      });
+      if (res.status === status.OK) {
+        localStorage.setItem('user', JSON.stringify(res));
+        if (res.role === 'customer') navigate('/customer/products');
+        if (res.role === 'administrator') navigate('/admin/manage');
+        if (res.role === 'seller') navigate('/seller/orders');
+      }
+    } catch (err) {
+      const { response } = err;
+      if (response.status === status.NOT_FOUND) setWarning('block');
+    }
   };
 
   const registerButton = (e) => {
@@ -30,18 +51,18 @@ function Login() {
     navigate('/register');
   };
 
-  useEffect(() => {
-    if (token && role === 'customer') {
-      navigate('/customer/products');
-    }
-    if (token && role === 'administrator') {
-      navigate('/admin/manage');
-    }
-    if (token && role === 'seller') {
-      navigate('/seller/orders');
-    }
-    if (err) setWarning('block');
-  }, [token, role, err, navigate]);
+  // useEffect(() => {
+  //   if (token && role === 'customer') {
+  //     navigate('/customer/products');
+  //   }
+  //   if (token && role === 'administrator') {
+  //     navigate('/admin/manage');
+  //   }
+  //   if (token && role === 'seller') {
+  //     navigate('/seller/orders');
+  //   }
+  //   if (err) setWarning('block');
+  // }, [token, role, err, navigate]);
 
   return (
     <div className="loginComponent">
