@@ -38,6 +38,7 @@ function Products() {
           <ProductCard
             product={ product }
             key={ i }
+            index={ i }
           />))}
       </div>
     </div>
