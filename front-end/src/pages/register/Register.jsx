@@ -21,6 +21,7 @@ function Register() {
   }
 
   async function postRegister() {
+    const created = 201;
     const data = JSON.stringify({
       name: fullName,
       email,
@@ -39,23 +40,21 @@ function Register() {
     try {
       const result = await axios(config);
 
-      return { data: result.data, status: result.status };
+      if (result.status !== created) {
+        return false;
+      }
+      localStorage.setItem('user', JSON.stringify(result.data));
+      setWarning('block');
+      return true;
     } catch (e) {
-      return null;
+      return e.message;
     }
   }
 
   function handleSubmit(e) {
     e.preventDefault();
     dispatch(getUser({ email }));
-    const res = postRegister();
-    const created = 201;
-    if (res.status !== created) {
-      setWarning('block');
-    } else {
-      localStorage.setItem('user', JSON.stringify(res.data));
-      return navigate('/products');
-    }
+    if (postRegister()) navigate('/products');
   }
 
   return (
@@ -85,14 +84,16 @@ function Register() {
           name="password"
           onChange={ handleChange }
         />
-        {}
         <button type="submit" data-testid="common_register__button-register">
           REGISTER
         </button>
       </form>
-      <span data-testid="common_register__element-invalid_register" display={ warning }>
+      <p
+        data-testid="common_register__element-invalid_register"
+        style={ { display: warning } }
+      >
         Dados inválidos
-      </span>
+      </p>
     </div>
   );
 }
