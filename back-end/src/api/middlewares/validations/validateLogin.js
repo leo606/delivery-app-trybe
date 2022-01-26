@@ -6,7 +6,7 @@ module.exports = (req, _res, next) => {
 
     const isValid = loginSchema.validate({ email, password });
     if (isValid.error) {
-      return next({ code: 400, message: isValid.error.message });
+      return next({ code: 'badRequest', message: isValid.error.message });
     }
     
     req.user = { email, password };

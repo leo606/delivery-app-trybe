@@ -1,8 +1,14 @@
+.loginComponent {
+  margin-top: 150px;
+}
+
 .loginForm {
   align-items: center;
+  background-color: #44b2c0;
+  border-radius: 8%;
   display: flex;
   flex-flow: column nowrap;
-  height: 150px;
+  height: 200px;
   justify-content: space-evenly;
   margin: auto;
   width: 25%;
@@ -13,7 +19,7 @@
   flex-flow: column nowrap;
   height: 60px;
   justify-content: space-evenly;
-  width: 200px;
+  width: 150px;
 }
 
 .inputs {
@@ -22,7 +28,7 @@
   flex-flow: column nowrap;
   height: 60px;
   justify-content: space-evenly;
-  width: 150px;
+  width: 180px;
 }
 
 .warning {
