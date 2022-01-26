@@ -2,12 +2,11 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import md5 from 'md5';
+import md5Serialize from '../../helpers/md5Serialize';
 import { getUser } from '../../redux/actions/user/getUser';
 
 function Register() {
   const navigate = useNavigate();
-
   const dispatch = useDispatch();
 
   const [fullName, setName] = useState('');
@@ -25,7 +24,7 @@ function Register() {
     const data = JSON.stringify({
       name: fullName,
       email,
-      password: md5(password),
+      password: md5Serialize(password),
     });
 
     const config = {
@@ -49,12 +48,12 @@ function Register() {
   function handleSubmit(e) {
     e.preventDefault();
     dispatch(getUser({ email }));
-
-    const returnApi = postRegister();
+    const res = postRegister();
     const created = 201;
-    if (returnApi.status !== created) {
+    if (res.status !== created) {
       setWarning('block');
     } else {
+      localStorage.setItem('user', JSON.stringify(res.data));
       return navigate('/products');
     }
   }
