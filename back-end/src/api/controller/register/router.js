@@ -1,5 +1,5 @@
 const express = require('express');
-const { validateRegister, validateUniqueEmail } = require('../../api/middlewares/validations');
+const { validateRegister, validateUniqueEmail } = require('../../middlewares/validations');
 
 const router = express.Router({ mergeParams: true });
 

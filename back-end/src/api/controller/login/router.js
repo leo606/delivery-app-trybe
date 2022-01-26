@@ -1,5 +1,5 @@
 const express = require('express');
-const { auth, validateLogin } = require('../../api/middlewares/validations');
+const { auth, validateLogin } = require('../../middlewares/validations');
 
 const router = express.Router({ mergeParams: true });
 

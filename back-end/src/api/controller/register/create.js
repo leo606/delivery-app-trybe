@@ -1,6 +1,6 @@
 const crypto = require('crypto');
-const statusCodes = require('../../helpers/statusCodes.json');
-const { createUser } = require('../../services/register');
+const statusCodes = require('../../../helpers/statusCodes.json');
+const { createUser } = require('../../../services/register');
 
 module.exports = async (req, res, _next) => {
   try {
