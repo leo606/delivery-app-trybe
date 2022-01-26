@@ -1,5 +1,5 @@
 const crypto = require('crypto');
-const createUser = require('../../services/register/createUser');
+const { createUser } = require('../../services/register');
 
 module.exports = async (req, res, _next) => {
   try {
