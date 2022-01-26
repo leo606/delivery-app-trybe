@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 
 const secret = fs.readFileSync(`${__dirname}/../../../../jwt.evaluation.key`, 'utf8');
 
-module.exports = async (req, res, next) => {
+module.exports = async (req, _res, next) => {
   try {
     const token = req.headers.authorization;
 
@@ -12,6 +12,6 @@ module.exports = async (req, res, next) => {
     req.user = { ...decoded.data };
     next();
   } catch (e) {
-    next({ code: 'unauthorized', message: 'token invalid' });
+    next({ code: 'unauthorized', message: e.message });
   }
 };
