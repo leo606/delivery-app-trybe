@@ -14,6 +14,7 @@ module.exports = async (req, res, next) => {
     if (user.err) {
       next({ ...user.err });
     }
+
     const token = jwt.sign({ data: user }, secret, jwtConfig);
     req.user = { ...user, token };
     next();
