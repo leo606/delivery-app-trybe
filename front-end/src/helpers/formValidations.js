@@ -12,7 +12,21 @@ export const passwordValidate = (password) => {
   return true;
 };
 
+export const nameValidate = (name) => {
+  const nameLength = 12;
+  if (!name) return false;
+  if (name.length < nameLength) return false;
+  return true;
+};
+
 export const loginValidate = (email, password) => {
   if (emailValidate(email) && passwordValidate(password)) return true;
+  return false;
+};
+
+export const registerValidate = (email, password, name) => {
+  if (emailValidate(email) && passwordValidate(password) && nameValidate(name)) {
+    return true;
+  }
   return false;
 };

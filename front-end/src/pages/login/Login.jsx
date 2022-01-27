@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import status from '../../helpers/status';
-// import md5Serialize from '../../helpers/md5Serialize';
+import md5Serialize from '../../helpers/md5Serialize';
 import { loginValidate } from '../../helpers/formValidations';
 import './login.css';
 
@@ -22,7 +22,7 @@ function Login() {
   const loginButton = async (e) => {
     try {
       e.preventDefault();
-      const passwordMd5 = '1c37466c159755ce1fa181bd247cb925';
+      const passwordMd5 = md5Serialize(password);
       const res = await axios.post(LOGIN_URL, {
         email,
         password: passwordMd5,
