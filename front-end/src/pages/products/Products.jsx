@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
 import status from '../../helpers/status';
@@ -20,9 +20,19 @@ const calcTotal = (cart) => {
   return total;
 };
 
+const checkCartValue = (value) => {
+  if (value === 0) return true;
+  return false;
+};
+
 function Products() {
   const cart = useSelector((store) => store.cart);
+  const navigate = useNavigate();
   const [products, setProducts] = useState([]);
+
+  const checkoutButton = () => {
+    navigate('/customer/checkout');
+  };
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -53,17 +63,20 @@ function Products() {
             index={ i }
           />))}
       </div>
-      <Link
+      <button
+        type="button"
         to="/customer/checkout"
-        data-testid="customer_products__checkout-bottom-value"
+        data-testid="customer_products__button-cart"
+        onClick={ checkoutButton }
+        disabled={ checkCartValue(calcTotal(cart)) }
       >
         Ver carrinho:
         <span
-          data-testid="customer_products__button-cart"
+          data-testid="customer_products__checkout-bottom-value"
         >
           { `${formatCurrency(calcTotal(cart))}` }
         </span>
-      </Link>
+      </button>
     </div>
   );
 }
