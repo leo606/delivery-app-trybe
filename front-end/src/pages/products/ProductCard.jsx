@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import formatCurrency from '../../helpers/formatCurrency';
 import { addProduct } from '../../redux/actions/cart/addProduct';
 import { rmProduct } from '../../redux/actions/cart/rmProduct';
+import { changeQuantityProduct } from '../../redux/actions/cart/changeQuantityProduct';
 
 function ProductCard({ product, index }) {
   const { price, url_image: image, name, id } = product;
@@ -26,6 +27,16 @@ function ProductCard({ product, index }) {
 
   const rmButton = () => {
     dispatch(rmProduct({ id, price, name }));
+  };
+
+  const quantityChange = ({ target: { value } }) => {
+    const numberValue = +value;
+    if (numberValue < 0) {
+      dispatch(changeQuantityProduct({ id, price, name, value: 0 }));
+    } else {
+      console.log(numberValue);
+      dispatch(changeQuantityProduct({ id, price, name, value: numberValue }));
+    }
   };
 
   return (
@@ -55,11 +66,13 @@ function ProductCard({ product, index }) {
         >
           -
         </button>
-        <span
+        <input
+          type="number"
           data-testid={ `customer_products__input-card-quantity-${index + 1}` }
-        >
-          { qunatity }
-        </span>
+          value={ qunatity }
+          onChange={ quantityChange }
+          style={ { appearance: 'textfield' } }
+        />
         <button
           type="button"
           data-testid={ `customer_products__button-card-add-item-${index + 1}` }
