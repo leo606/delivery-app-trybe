@@ -4,8 +4,9 @@ import PropTypes from 'prop-types';
 import formatCurrency from '../../helpers/formatCurrency';
 import { addProduct } from '../../redux/actions/cart/addProduct';
 import { rmProduct } from '../../redux/actions/cart/rmProduct';
+import { changeQuantityProduct } from '../../redux/actions/cart/changeQuantityProduct';
 
-function ProductCard({ product, index }) {
+function ProductCard({ product }) {
   const { price, url_image: image, name, id } = product;
   const [qunatity, setQuantity] = useState(0);
   const dispatch = useDispatch();
@@ -28,41 +29,53 @@ function ProductCard({ product, index }) {
     dispatch(rmProduct({ id, price, name }));
   };
 
+  const quantityChange = ({ target: { value } }) => {
+    const numberValue = +value;
+    if (numberValue < 0) {
+      dispatch(changeQuantityProduct({ id, price, name, value: 0 }));
+    } else {
+      console.log(numberValue);
+      dispatch(changeQuantityProduct({ id, price, name, value: numberValue }));
+    }
+  };
+
   return (
     <div>
       <div>
         <span
-          data-testid={ `customer_products__element-card-price-${index + 1}` }
+          data-testid={ `customer_products__element-card-price-${id}` }
         >
           { `R$ ${formatCurrency(price)}` }
         </span>
         <img
-          data-testid={ `customer_products__img-card-bg-image-${index + 1}` }
+          data-testid={ `customer_products__img-card-bg-image-${id}` }
           src={ image }
           alt={ `${name}` }
         />
       </div>
       <div>
         <p
-          data-testid={ `customer_products__element-card-title-${index + 1}` }
+          data-testid={ `customer_products__element-card-title-${id}` }
         >
           { name }
         </p>
         <button
           type="button"
-          data-testid={ `customer_products__button-card-rm-item-${index + 1}` }
+          data-testid={ `customer_products__button-card-rm-item-${id}` }
           onClick={ rmButton }
         >
           -
         </button>
-        <span
-          data-testid={ `customer_products__input-card-quantity-${index + 1}` }
-        >
-          { qunatity }
-        </span>
+        <input
+          type="number"
+          data-testid={ `customer_products__input-card-quantity-${id}` }
+          value={ qunatity }
+          onChange={ quantityChange }
+          style={ { appearance: 'textfield' } }
+        />
         <button
           type="button"
-          data-testid={ `customer_products__button-card-add-item-${index + 1}` }
+          data-testid={ `customer_products__button-card-add-item-${id}` }
           onClick={ addButton }
         >
           +
@@ -79,7 +92,6 @@ ProductCard.propTypes = {
     price: PropTypes.string,
     id: PropTypes.number,
   }).isRequired,
-  index: PropTypes.number.isRequired,
 };
 
 export default ProductCard;
