@@ -5,19 +5,39 @@ import { useDispatch } from 'react-redux';
 import { deleteProduct } from '../../redux/actions/cart/deleteProduct';
 import formatCurrency from '../../helpers/formatCurrency';
 
-function ProductTr({ product }) {
+function ProductTr({ product, index }) {
   const dispatch = useDispatch();
 
   return (
     <tr key={ product.id }>
-      <td>{product.id}</td>
-      <td>{product.name}</td>
-      <td>{product.quantity}</td>
-      <td>{product.price}</td>
-      <td>{formatCurrency(product.quantity * product.price)}</td>
+      <td
+        data-testid={ `customer_checkout__element-order-table-item-number-${index}` }
+      >
+        {product.id}
+      </td>
+      <td
+        data-testid={ `customer_checkout__element-order-table-name-${index}` }
+      >
+        {product.name}
+      </td>
+      <td
+        data-testid={ `customer_checkout__element-order-table-quantity-${index}` }
+      >
+        {product.quantity}
+      </td>
+      <td
+        data-testid={ `customer_checkout__element-order-table-unit-price-${index}` }
+      >
+        {product.price}
+      </td>
+      <td
+        data-testid={ `customer_checkout__element-order-table-sub-total-${index}` }
+      >
+        {formatCurrency(product.quantity * product.price)}
+      </td>
       <td>
         <button
-          data-testid={ `customer_checkout__element-order-table-remove-${product.id}` }
+          data-testid={ `customer_checkout__element-order-table-remove-${index}` }
           type="button"
           onClick={ () => dispatch(deleteProduct({ id: product.id })) }
         >
@@ -36,6 +56,7 @@ ProductTr.propTypes = {
     id: PropTypes.number,
     quantity: PropTypes.number,
   }).isRequired,
+  index: PropTypes.number.isRequired,
 };
 
 export default ProductTr;
