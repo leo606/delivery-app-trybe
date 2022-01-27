@@ -2,11 +2,12 @@ const statusCodes = require('../../../helpers/statusCodes.json');
 const { create } = require('../../../services/checkout');
 
 module.exports = async (req, res, _next) => {
+  const userId = req.user.id;
+  const { sellerId, products: productsList, total } = req.body;
+
   try {
-    const { user } = req;
-    const { sellerId, products: productsList, total } = req.body;
-    const newSale = await create({ userId: user.id, sellerId, productsList, total });
-    res.status(statusCodes.ok).json(newSale);
+    const newSale = await create({ userId, sellerId, productsList, total });
+    res.status(statusCodes.created).json(newSale);
   } catch (e) {
     console.log(e);
   }
