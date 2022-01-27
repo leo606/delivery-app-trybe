@@ -1,15 +1,27 @@
 import React, { useEffect, useState } from 'react';
-// import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import axios from 'axios';
 import status from '../../helpers/status';
 import Header from '../../components/header/Header';
 import ProductCard from './ProductCard';
 import getLocalStorage from '../../helpers/getLocalStorage';
+import formatCurrency from '../../helpers/formatCurrency';
 
 const PRODUCTS_URL = 'http://localhost:3001/products';
 
+const calcTotal = (cart) => {
+  let total = 0;
+
+  cart.forEach((e) => {
+    const { price, quantity } = e;
+    total += (price * quantity);
+  });
+  return total;
+};
+
 function Products() {
-  // const navigate = useNavigate();
+  const cart = useSelector((store) => store.cart);
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -41,6 +53,17 @@ function Products() {
             index={ i }
           />))}
       </div>
+      <Link
+        to="/customer/checkout"
+        data-testid="customer_products__checkout-bottom-value"
+      >
+        Ver carrinho:
+        <span
+          data-testid="customer_products__button-cart"
+        >
+          { `${formatCurrency(calcTotal(cart))}` }
+        </span>
+      </Link>
     </div>
   );
 }

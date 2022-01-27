@@ -15,15 +15,17 @@ function ProductCard({ product, index }) {
     const item = cart.find((e) => e.id === id);
     if (item) {
       setQuantity(item.quantity);
+    } else {
+      setQuantity(0);
     }
   }, [cart, id]);
 
   const addButton = () => {
-    dispatch(addProduct({ id }));
+    dispatch(addProduct({ id, price }));
   };
 
   const rmButton = () => {
-    dispatch(rmProduct({ id }));
+    dispatch(rmProduct({ id, price }));
   };
 
   return (
