@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
         field: 'name'
       },
       price: {
-        type: DataTypes.DECIMAL,
+        type: DataTypes.DECIMAL(10,2),
         field: 'price'
       },
       urlImage: {

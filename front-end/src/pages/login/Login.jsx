@@ -28,14 +28,14 @@ function Login() {
         password: passwordMd5,
       });
       if (res.status === status.OK) {
-        localStorage.setItem('user', JSON.stringify(res));
+        localStorage.setItem('user', JSON.stringify(res.data));
         if (res.data.role === 'customer') navigate('/customer/products');
         if (res.data.role === 'administrator') navigate('/admin/manage');
         if (res.data.role === 'seller') navigate('/seller/orders');
       }
     } catch (err) {
       const { response } = err;
-      if (response.status === status.NOT_FOUND) setWarning('block');
+      if (response && response.status === status.NOT_FOUND) setWarning('block');
     }
   };
 

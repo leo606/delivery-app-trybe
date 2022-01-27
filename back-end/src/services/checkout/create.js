@@ -2,10 +2,10 @@
 const Sequelize = require('sequelize');
 const { sales, products, salesProducts } = require('../../database/models');
 
-const environment = process.env.NODE_ENV || 'test';
-const sequelizeConfig = require('../../database/config/config');
+// const environment = process.env.NODE_ENV || 'test';
+// const sequelizeConfig = require('../../database/config/config');
 
-const sequelize = new Sequelize(sequelizeConfig[environment]);
+// const sequelize = new Sequelize(sequelizeConfig[environment]);
 
 function saleSerialize({ userId, sellerId, total }) {
   return {
