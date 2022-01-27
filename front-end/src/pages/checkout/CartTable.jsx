@@ -10,7 +10,7 @@ function CartTable() {
   return (
     <table>
       <TableHeader />
-      {cart.map((p, i) => <ProductTr key={ p.id } product={ p } index={ i + 1 } />)}
+      {cart.map((p, i) => <ProductTr key={ p.id } product={ p } index={ i } />)}
     </table>
   );
 }
