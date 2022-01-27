@@ -1,9 +1,9 @@
 /* eslint-disable */
-const Sequelize = require('sequelize');
-const { sales, products } = require('../../database/models');
+const Sequelize = require("sequelize");
+const { sales, products } = require("../../database/models");
 
-const environment = process.env.NODE_ENV || 'test';
-const sequelizeConfig = require('../../database/config/config');
+const environment = process.env.NODE_ENV || "test";
+const sequelizeConfig = require("../../database/config/config");
 
 const sequelize = new Sequelize(sequelizeConfig[environment]);
 
@@ -17,18 +17,24 @@ module.exports = async ({ userId, sellerId, productsList, total }) => {
       delivery_number: "456456456",
       sale_date: new Date(Date.now()),
       status: "ordered",
-    }
+    };
 
-    const listedProducts = await products.findAll({ where: {
-      id: { [Sequelize.Op.in]: productsList.map((prod)=> prod.id) },
-    } });
+    // const listedProducts = await products.findAll({
+    //   where: { id: { [Sequelize.Op.in]: productsList.map((prod) => prod.id) } },
+    // });
+    const listedProducts = productsList.map((prod) => prod.id);
+    const listedProductsQty = productsList.map((prod) => prod.quantity);
 
     const create = await sequelize.transaction(async (transaction) => {
       // create sale
       const createSale = await sales.create(sale, { transaction });
 
-      // await createPost.addCategory(findCategories, { transaction });
-      await createSale.addProducts(listedProducts, { transaction });
+      // create salesProducts
+      const salesProducts = await createSale.setProducts(listedProducts, {
+        transaction,
+        through: { quantity:  33}
+      });
+      console.log(salesProducts);
     });
     return create;
   } catch (e) {
