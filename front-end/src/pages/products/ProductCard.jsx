@@ -6,7 +6,7 @@ import { addProduct } from '../../redux/actions/cart/addProduct';
 import { rmProduct } from '../../redux/actions/cart/rmProduct';
 
 function ProductCard({ product, index }) {
-  const { price, image, name, id } = product;
+  const { price, url_image: image, name, id } = product;
   const [qunatity, setQuantity] = useState(0);
   const dispatch = useDispatch();
   const cart = useSelector((store) => store.cart);
@@ -21,7 +21,7 @@ function ProductCard({ product, index }) {
   }, [cart, id]);
 
   const addButton = () => {
-    dispatch(addProduct({ id, price }));
+    dispatch(addProduct({ id, price, name }));
   };
 
   const rmButton = () => {
@@ -75,7 +75,7 @@ function ProductCard({ product, index }) {
 ProductCard.propTypes = {
   product: PropTypes.shape({
     name: PropTypes.string,
-    image: PropTypes.string,
+    url_image: PropTypes.string,
     price: PropTypes.string,
     id: PropTypes.number,
   }).isRequired,
