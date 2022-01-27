@@ -1,18 +1,17 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 import md5Serialize from '../../helpers/md5Serialize';
-import { getUser } from '../../redux/actions/user/getUser';
+import { registerValidate } from '../../helpers/formValidations';
 
 function Register() {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
 
   const [fullName, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [warning, setWarning] = useState('none');
+  const [warningMessage, setWarningMessage] = useState('Dados inválidos');
 
   function handleChange({ target: { value, name } }) {
     if (name === 'name') setName(value);
@@ -44,22 +43,23 @@ function Register() {
         return false;
       }
       localStorage.setItem('user', JSON.stringify(result.data));
-      setWarning('block');
       return true;
     } catch (e) {
-      return e.message;
+      return { status: e.response.status, message: e.response.data.message };
     }
   }
 
-  function handleSubmit(e) {
+  async function registerButton(e) {
     e.preventDefault();
-    dispatch(getUser({ email }));
-    if (postRegister()) navigate('/products');
+    const registerResponse = await postRegister();
+    if (registerResponse === true) return navigate('/customer/products');
+    setWarningMessage(registerResponse.message);
+    setWarning('block');
   }
 
   return (
     <div>
-      <form onSubmit={ handleSubmit }>
+      <form>
         <input
           type="text"
           data-testid="common_register__input-name"
@@ -84,7 +84,12 @@ function Register() {
           name="password"
           onChange={ handleChange }
         />
-        <button type="submit" data-testid="common_register__button-register">
+        <button
+          type="submit"
+          data-testid="common_register__button-register"
+          disabled={ !registerValidate(email, password, fullName) }
+          onClick={ registerButton }
+        >
           REGISTER
         </button>
       </form>
@@ -92,7 +97,7 @@ function Register() {
         data-testid="common_register__element-invalid_register"
         style={ { display: warning } }
       >
-        Dados inválidos
+        { warningMessage }
       </p>
     </div>
   );
