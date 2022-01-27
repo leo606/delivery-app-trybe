@@ -1,6 +1,5 @@
-/*eslint-disable*/
 const Sequelize = require('sequelize');
-const { sales, products, salesProducts } = require('../../database/models');
+const { sales, salesProducts } = require('../../database/models');
 
 const environment = process.env.NODE_ENV || 'test';
 const sequelizeConfig = require('../../database/config/config');
@@ -19,22 +18,20 @@ function saleSerialize({ userId, sellerId, total }) {
   };
 }
 
-module.exports = async ({productsList, ...saleData}) => {
+module.exports = async ({ productsList, ...saleData }) => {
   try {
     const sale = saleSerialize(saleData);
-
     const create = await sequelize.transaction(async (transaction) => {
       const createSale = await sales.create(sale, { transaction });
       const listedProducts = productsList.map(({ id, quantity }) => ({
-        product_id: id,
-        sale_id: createSale.id,
+        productId: id,
+        saleId: createSale.id,
         quantity,
       }));
-      const createSalesProducts = await salesProducts.bulkCreate(
+      await salesProducts.bulkCreate(
         listedProducts,
         { transaction },
       );
-      return createSalesProducts;
     });
     return create;
   } catch (e) {
