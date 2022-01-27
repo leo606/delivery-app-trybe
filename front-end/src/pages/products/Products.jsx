@@ -55,11 +55,11 @@ function Products() {
       </div>
       <Link
         to="/customer/checkout"
-        data-testid="customer_products__checkout-bottom-value"
+        data-testid="customer_products__button-cart"
       >
         Ver carrinho:
         <span
-          data-testid="customer_products__button-cart"
+          data-testid="customer_products__checkout-bottom-value"
         >
           { `${formatCurrency(calcTotal(cart))}` }
         </span>
