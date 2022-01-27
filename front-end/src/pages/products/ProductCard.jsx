@@ -15,52 +15,54 @@ function ProductCard({ product, index }) {
     const item = cart.find((e) => e.id === id);
     if (item) {
       setQuantity(item.quantity);
+    } else {
+      setQuantity(0);
     }
   }, [cart, id]);
 
   const addButton = () => {
-    dispatch(addProduct({ id }));
+    dispatch(addProduct({ id, price }));
   };
 
   const rmButton = () => {
-    dispatch(rmProduct({ id }));
+    dispatch(rmProduct({ id, price }));
   };
 
   return (
     <div>
       <div>
         <span
-          data-testid={ `customer_products__element-card-price-${index}` }
+          data-testid={ `customer_products__element-card-price-${index + 1}` }
         >
           { `R$ ${formatCurrency(price)}` }
         </span>
         <img
-          data-testid={ `customer_products__img-card-bg-image-${index}` }
+          data-testid={ `customer_products__img-card-bg-image-${index + 1}` }
           src={ image }
           alt={ `${name}` }
         />
       </div>
       <div>
         <p
-          data-testid={ `customer_products__element-card-title-${index}` }
+          data-testid={ `customer_products__element-card-title-${index + 1}` }
         >
           { name }
         </p>
         <button
           type="button"
-          data-testid={ `customer_products__button-card-rm-item-${index}` }
+          data-testid={ `customer_products__button-card-rm-item-${index + 1}` }
           onClick={ rmButton }
         >
           -
         </button>
         <span
-          data-testid={ `customer_products__input-card-quantity-${index}` }
+          data-testid={ `customer_products__input-card-quantity-${index + 1}` }
         >
           { qunatity }
         </span>
         <button
           type="button"
-          data-testid={ `customer_products__button-card-add-item-${index}` }
+          data-testid={ `customer_products__button-card-add-item-${index + 1}` }
           onClick={ addButton }
         >
           +
