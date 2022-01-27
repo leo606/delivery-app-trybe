@@ -25,7 +25,7 @@ function ProductCard({ product, index }) {
   };
 
   const rmButton = () => {
-    dispatch(rmProduct({ id, price }));
+    dispatch(rmProduct({ id, price, name }));
   };
 
   return (
