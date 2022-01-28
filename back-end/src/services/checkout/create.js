@@ -13,7 +13,7 @@ const productsSerialize = (products, saleId) => products.map(({ id, quantity }) 
 }));
 
 module.exports = async ({ productsList, ...sale }) => {
-  const newSale = { ...sale, status: 'ordered', saleDate: new Date(Date.now()) };
+  const newSale = { ...sale, status: 'Pendente', saleDate: new Date(Date.now()) };
 
   try {
     const create = await sequelize.transaction(async (transaction) => {
