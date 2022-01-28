@@ -1,0 +1,28 @@
+.productCard {
+  border: solid black 1px;
+  box-shadow: 10px 10px 5px gray;
+  margin: 10px;
+  padding: 20px;
+}
+
+.price {
+  display: block;
+  z-index: 1;
+}
+
+.btnQuantity {
+  background-color: green;
+  color: white;
+  font-size: 16px;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+}
+
+.qtdValue {
+  color: black;
+  font-size: 16px;
+  padding: 5px;
+  text-align: center;
+  text-decoration: none;
+}

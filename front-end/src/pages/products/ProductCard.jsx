@@ -5,6 +5,7 @@ import formatCurrency from '../../helpers/formatCurrency';
 import { addProduct } from '../../redux/actions/cart/addProduct';
 import { rmProduct } from '../../redux/actions/cart/rmProduct';
 import { changeQuantityProduct } from '../../redux/actions/cart/changeQuantityProduct';
+import './ProductCard.css';
 
 function ProductCard({ product }) {
   const { price, urlImage, name, id } = product;
@@ -40,14 +41,16 @@ function ProductCard({ product }) {
   };
 
   return (
-    <div>
+    <div className="productCard">
       <div>
         <span
+          className="price"
           data-testid={ `customer_products__element-card-price-${id}` }
         >
           { `R$ ${formatCurrency(price)}` }
         </span>
         <img
+          className="image"
           data-testid={ `customer_products__img-card-bg-image-${id}` }
           src={ urlImage }
           alt={ `${name}` }
@@ -60,6 +63,7 @@ function ProductCard({ product }) {
           { name }
         </p>
         <button
+          className="btnQuantity"
           type="button"
           data-testid={ `customer_products__button-card-rm-item-${id}` }
           onClick={ rmButton }
@@ -67,6 +71,7 @@ function ProductCard({ product }) {
           -
         </button>
         <input
+          className="qtdValue"
           type="number"
           data-testid={ `customer_products__input-card-quantity-${id}` }
           value={ qunatity }
@@ -74,6 +79,7 @@ function ProductCard({ product }) {
           style={ { appearance: 'textfield' } }
         />
         <button
+          className="btnQuantity"
           type="button"
           data-testid={ `customer_products__button-card-add-item-${id}` }
           onClick={ addButton }
