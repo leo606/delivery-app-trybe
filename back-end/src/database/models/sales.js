@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
         field: "seller_id",
       },
       totalPrice: {
-        type: DataTypes.DECIMAL,
+        type: DataTypes.DECIMAL(10,2),
         field: "total_price",
       },
       deliveryAddress: {
