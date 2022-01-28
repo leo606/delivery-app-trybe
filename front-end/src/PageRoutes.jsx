@@ -5,11 +5,13 @@ import Products from './pages/products/Products';
 import Register from './pages/register/Register';
 import Orders from './pages/orders/Orders';
 import Checkout from './pages/checkout/Checkout';
+import OrderDetails from './pages/orderDetails/OrderDetails';
 
 function PageRoutes() {
   return (
     <Routes>
       <Route exact path="/login" element={ <Login /> } />
+      <Route exact path="/customer/orders/:orderId" element={ <OrderDetails /> } />
       <Route exact path="/customer/products" element={ <Products /> } />
       <Route exact path="/customer/orders" element={ <Orders /> } />
       <Route exact path="/customer/checkout" element={ <Checkout /> } />
