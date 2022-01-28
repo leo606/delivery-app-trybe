@@ -11,7 +11,7 @@ function PageRoutes() {
   return (
     <Routes>
       <Route exact path="/login" element={ <Login /> } />
-      <Route exact path="/customer/orders/:orderId" element={ <OrderDetails /> } />
+      <Route exact path="/customer/orders/:saleId" element={ <OrderDetails /> } />
       <Route exact path="/customer/products" element={ <Products /> } />
       <Route exact path="/customer/orders" element={ <Orders /> } />
       <Route exact path="/customer/checkout" element={ <Checkout /> } />
