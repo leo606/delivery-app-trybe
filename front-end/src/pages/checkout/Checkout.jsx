@@ -15,7 +15,7 @@ function Checkout() {
       <main>
         <h1>Finalizar Pedido</h1>
         <CartTable />
-        <div>
+        <div data-testid="customer_checkout__element-order-total-price">
           {`Total: R$ ${calcTotal(cart)}`}
         </div>
       </main>
