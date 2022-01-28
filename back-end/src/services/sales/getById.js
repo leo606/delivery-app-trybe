@@ -4,7 +4,7 @@ module.exports = async (id) => {
   try {
     const sale = await sales.findByPk(id, { include: [
       { model: products, as: 'products' },
-      { model: users, as: 'seller' },
+      { model: users, as: 'seller', attributes: { exclude: ['password'] } },
     ] });
 
     if (!sale) {
