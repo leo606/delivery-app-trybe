@@ -7,7 +7,7 @@ import { rmProduct } from '../../redux/actions/cart/rmProduct';
 import { changeQuantityProduct } from '../../redux/actions/cart/changeQuantityProduct';
 
 function ProductCard({ product }) {
-  const { price, url_image: image, name, id } = product;
+  const { price, urlImage, name, id } = product;
   const [qunatity, setQuantity] = useState(0);
   const dispatch = useDispatch();
   const cart = useSelector((store) => store.cart);
@@ -49,7 +49,7 @@ function ProductCard({ product }) {
         </span>
         <img
           data-testid={ `customer_products__img-card-bg-image-${id}` }
-          src={ image }
+          src={ urlImage }
           alt={ `${name}` }
         />
       </div>
@@ -88,7 +88,7 @@ function ProductCard({ product }) {
 ProductCard.propTypes = {
   product: PropTypes.shape({
     name: PropTypes.string,
-    url_image: PropTypes.string,
+    urlImage: PropTypes.string,
     price: PropTypes.string,
     id: PropTypes.number,
   }).isRequired,

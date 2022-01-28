@@ -1,44 +1,34 @@
-// const Sequelize = require('sequelize');
-// const { sales } = require('../../database/models');
+const Sequelize = require('sequelize');
+const { sales, salesProducts } = require('../../database/models');
 
-// const environment = process.env.NODE_ENV || 'test';
-// const sequelizeConfig = require('../../database/config/config');
+const environment = process.env.NODE_ENV || 'test';
+const sequelizeConfig = require('../../database/config/config');
 
-// const sequelize = new Sequelize(sequelizeConfig[environment]);
+const sequelize = new Sequelize(sequelizeConfig[environment]);
 
-// module.exports = async (sale) => {
-//   try {
-//     const transaction = await sequelize.transaction(async () => {
-//       // create sale
-//       const createSale = await sales.create
+const productsSerialize = (products, saleId) => products.map(({ id, quantity }) => ({
+  productId: id,
+  saleId,
+  quantity,
+}));
 
-//       // add sales-products
-//     });
-//   } catch (e) {
-//     console.log(e);
-//   }
-// };
-// sale from front:
-// {
-//   sellerId,
-//   products: [{ id, quantity }, ...],
-//   total,
-// }
+module.exports = async ({ productsList, ...sale }) => {
+  const newSale = { ...sale, status: 'Pendente', saleDate: new Date(Date.now()) };
 
-// sale:
-// {
-//   user_id: 2,
-//   seller_id: 1,
-//   total_price: 99.9,
-//   delivery_address: "address",
-//   delivery_number: "23",
-//   sale_date: new Date(Date.now()),
-//   status: "ordered",
-// },
+  try {
+    const create = await sequelize.transaction(async (transaction) => {
+      const createSale = await sales.create(newSale, { transaction });
 
-// product:
-// {
-//   name: "Becks 600ml",
-//   price: 8.89,
-//   url_image: "http://localhost:3001/images/beer.jpg",
-// },
+      const listedProducts = productsSerialize(productsList, createSale.id);
+
+      await salesProducts.bulkCreate(listedProducts, { transaction });
+      return createSale;
+    });
+    if (create.id) {
+      return create.id;
+    }
+      return { err: { code: 'internalServerError', message: 'something went wrong' } };
+  } catch (e) {
+    console.log(e);
+  }
+};

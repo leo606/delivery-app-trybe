@@ -1,23 +1,16 @@
-const fs = require('fs');
-const jwt = require('jsonwebtoken');
-const { get } = require('../../../services/login');
-
-const secret = fs.readFileSync(`${__dirname}/../../../../jwt.evaluation.key`, 'utf-8')
-.trim();
-
-const jwtConfig = {
-  expiresIn: '7d',
-  algorithm: 'HS256',
-};
+const signJwt = require('../../../helpers/signJwt');
+const { getByEmailAndPass } = require('../../../services/users');
 
 module.exports = async (req, res, next) => {
   try {
-    const user = await get(req.user);
+    const { email, password } = req.user;
+    const user = await getByEmailAndPass(email, password);
+    console.log(user);
     if (user.err) {
       next({ ...user.err });
     }
 
-    const token = jwt.sign({ data: user }, secret, jwtConfig);
+    const token = signJwt(user);
     req.user = { ...user, token };
     next();
   } catch (e) {

@@ -6,7 +6,7 @@ module.exports = async (email) => {
       where: { email },
     });
     if (!user) {
-      return { err: { code: 'notFound' } };
+      return { err: { code: 'notFound', message: 'user not found' } };
     }
     return user.dataValues;
   } catch (e) {
