@@ -41,9 +41,9 @@ function AdressForm() {
           onChange={ handleChange }
           data-testid="customer_checkout__select-seller"
         >
-          <option value="x">x</option>
-          <option value="y">y</option>
-          <option value="z">z</option>
+          <option value="1">x</option>
+          <option value="2">y</option>
+          <option value="3">z</option>
         </select>
         <input
           type="text"

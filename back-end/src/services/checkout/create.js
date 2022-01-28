@@ -6,23 +6,12 @@ const sequelizeConfig = require('../../database/config/config');
 
 const sequelize = new Sequelize(sequelizeConfig[environment]);
 
-function saleSerialize({ userId, sellerId, total }) {
-  return {
-      userId,
-      sellerId,
-      totalPrice: total,
-      deliveryAddress: 'address',
-      deliveryNumber: '456456456',
-      saleDate: new Date(Date.now()),
-      status: 'ordered',
-  };
-}
+module.exports = async ({ productsList, ...sale }) => {
+  const newSale = { ...sale, status: 'ordered', saleDate: new Date(Date.now()) };
 
-module.exports = async ({ productsList, ...saleData }) => {
   try {
-    const sale = saleSerialize(saleData);
     const create = await sequelize.transaction(async (transaction) => {
-      const createSale = await sales.create(sale, { transaction });
+      const createSale = await sales.create(newSale, { transaction });
 
       const listedProducts = productsList.map(({ id, quantity }) => ({
         productId: id,
