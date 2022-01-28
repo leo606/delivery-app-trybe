@@ -1,9 +1,11 @@
 const signJwt = require('../../../helpers/signJwt');
-const { get } = require('../../../services/login');
+const { getByEmailAndPass } = require('../../../services/users');
 
 module.exports = async (req, res, next) => {
   try {
-    const user = await get(req.user);
+    const { email, password } = req.user;
+    const user = await getByEmailAndPass(email, password);
+    console.log(user);
     if (user.err) {
       next({ ...user.err });
     }
