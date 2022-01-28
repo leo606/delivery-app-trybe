@@ -1,6 +1,8 @@
+/*eslint-disable */
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import getLocalStorage from '../../helpers/getLocalStorage';
 
 import calcTotal from '../../helpers/calcTotal';
@@ -9,6 +11,7 @@ const POST_CHECKOUT = 'http://localhost:3001/checkout';
 
 function AdressForm() {
   const cart = useSelector((state) => state.cart);
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     sellerId: '',
     deliveryAddress: '',
@@ -31,7 +34,7 @@ function AdressForm() {
     };
     try {
       const posted = await axios.post(POST_CHECKOUT, data, config);
-      console.log(posted.data);
+      return navigate(`/customer/orders/${posted.data.id}`);
     } catch (err) {
       console.log(err);
       console.log(err.message);
