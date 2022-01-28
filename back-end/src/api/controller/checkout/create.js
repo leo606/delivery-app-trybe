@@ -20,7 +20,6 @@ function serializeBody(body) {
 
 module.exports = async (req, res, next) => {
   const userId = req.user.id;
-  console.log(req.user.id);
   try {
     const newSaleId = await create({ ...serializeBody(req.body), userId });
 

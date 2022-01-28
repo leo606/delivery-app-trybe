@@ -1,5 +1,5 @@
 const statusCodes = require('../../../helpers/statusCodes.json');
-const { createUser } = require('../../../services/register');
+const { create } = require('../../../services/users');
 const signJwt = require('../../../helpers/signJwt');
 
 module.exports = async (req, res, _next) => {
@@ -12,7 +12,7 @@ module.exports = async (req, res, _next) => {
       password,
       role,
     };
-    await createUser(data);
+    await create(data);
     const token = signJwt(data);
     res.status(statusCodes.created).json({ name, email, role, token });
   } catch (e) {
