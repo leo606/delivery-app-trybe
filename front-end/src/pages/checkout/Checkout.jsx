@@ -5,6 +5,7 @@ import calcTotal from '../../helpers/calcTotal';
 
 import Header from '../../components/header/Header';
 import CartTable from './CartTable';
+import AdressForm from './AdressForm';
 
 function Checkout() {
   const cart = useSelector((store) => store.cart);
@@ -13,11 +14,17 @@ function Checkout() {
     <div>
       <Header />
       <main>
-        <h1>Finalizar Pedido</h1>
-        <CartTable />
-        <div data-testid="customer_checkout__element-order-total-price">
-          {`Total: R$ ${calcTotal(cart)}`}
-        </div>
+        <section>
+          <h1>Finalizar Pedido</h1>
+          <CartTable />
+          <div data-testid="customer_checkout__element-order-total-price">
+            {`Total: R$ ${calcTotal(cart)}`}
+          </div>
+        </section>
+        <section>
+          <h1>Detalhes e Endereço para Entrega</h1>
+          <AdressForm />
+        </section>
       </main>
     </div>
   );
