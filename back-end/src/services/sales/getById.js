@@ -1,12 +1,16 @@
-const { sale } = require('../../database/models');
+const { sales, products } = require('../../database/models');
 
 module.exports = async (id) => {
   try {
-    const findSale = await sale.findByPk(id);
-    if (!findSale) {
+    const sale = await sales.findByPk(id, { include: [
+      { model: products, as: 'products' },
+    ] });
+
+    if (!sale) {
       return { err: { code: 'notFound', message: 'sale not found' } };
     }
-    return findSale;
+
+    return sale;
   } catch (e) {
     console.log(e);
   }

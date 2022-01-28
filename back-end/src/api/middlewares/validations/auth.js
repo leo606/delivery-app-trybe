@@ -5,7 +5,6 @@ module.exports = async (req, res, next) => {
   try {
     const { email, password } = req.user;
     const user = await getByEmailAndPass(email, password);
-    console.log(user);
     if (user.err) {
       next({ ...user.err });
     }
