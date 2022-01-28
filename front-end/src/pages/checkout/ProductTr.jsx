@@ -13,7 +13,7 @@ function ProductTr({ product, index }) {
       <td
         data-testid={ `customer_checkout__element-order-table-item-number-${index}` }
       >
-        {product.id}
+        {index + 1}
       </td>
       <td
         data-testid={ `customer_checkout__element-order-table-name-${index}` }
@@ -28,7 +28,7 @@ function ProductTr({ product, index }) {
       <td
         data-testid={ `customer_checkout__element-order-table-unit-price-${index}` }
       >
-        {product.price}
+        {formatCurrency(product.price)}
       </td>
       <td
         data-testid={ `customer_checkout__element-order-table-sub-total-${index}` }
