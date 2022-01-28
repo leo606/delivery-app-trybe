@@ -18,12 +18,17 @@ function serializeBody(body) {
   };
 }
 
-module.exports = async (req, res, _next) => {
+module.exports = async (req, res, next) => {
   const userId = req.user.id;
   console.log(req.user.id);
   try {
-    const newSale = await create({ ...serializeBody(req.body), userId });
-    res.status(statusCodes.created).json(newSale);
+    const newSaleId = await create({ ...serializeBody(req.body), userId });
+
+    if (newSaleId.err) {
+      next({ ...newSaleId.err });
+    }
+
+    res.status(statusCodes.created).json({ id: newSaleId });
   } catch (e) {
     console.log(e);
   }

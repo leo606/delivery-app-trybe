@@ -31,7 +31,7 @@ function AdressForm() {
     };
     try {
       const posted = await axios.post(POST_CHECKOUT, data, config);
-      console.log(posted);
+      console.log(posted.data);
     } catch (err) {
       console.log(err);
       console.log(err.message);
