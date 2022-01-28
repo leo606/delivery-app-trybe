@@ -23,15 +23,14 @@ module.exports = async ({ productsList, ...saleData }) => {
     const sale = saleSerialize(saleData);
     const create = await sequelize.transaction(async (transaction) => {
       const createSale = await sales.create(sale, { transaction });
+
       const listedProducts = productsList.map(({ id, quantity }) => ({
         productId: id,
         saleId: createSale.id,
         quantity,
       }));
-      await salesProducts.bulkCreate(
-        listedProducts,
-        { transaction },
-      );
+
+      await salesProducts.bulkCreate(listedProducts, { transaction });
     });
     return create;
   } catch (e) {
