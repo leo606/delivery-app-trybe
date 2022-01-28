@@ -1,4 +1,3 @@
-/*eslint-disable*/
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
@@ -20,15 +19,22 @@ function AdressForm() {
     setFormData((prev) => ({ ...prev, [target.name]: target.value }));
   }
 
-  function postSale(e) {
+  async function postSale(e) {
     e.preventDefault();
-    const data = { ...formData, products: cart, total: +calcTotal(cart).replace(',','.') };
-    const config = { headers: { authorization: getLocalStorage('user').token } };
+    const data = {
+      ...formData,
+      products: cart,
+      total: +calcTotal(cart).replace(',', '.'),
+    };
+    const config = {
+      headers: { authorization: getLocalStorage('user').token },
+    };
     try {
-      axios.post(POST_CHECKOUT, data, config);
-    } catch (e) {
-      console.log(e);
-      console.log(e.message);
+      const posted = await axios.post(POST_CHECKOUT, data, config);
+      console.log(posted);
+    } catch (err) {
+      console.log(err);
+      console.log(err.message);
     }
   }
 
