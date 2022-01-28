@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { registerValidate } from '../../helpers/formValidations';
 import getLocalStorage from '../../helpers/getLocalStorage';
+import md5Serialize from '../../helpers/md5Serialize';
 import status from '../../helpers/status';
 import HeaderAdmin from './HeaderAdmin';
 
@@ -38,7 +39,7 @@ function Manage() {
         {
           name,
           email,
-          password,
+          password: md5Serialize(password),
           role,
         },
         {
