@@ -22,7 +22,7 @@ function AdressForm() {
 
   function postSale(e) {
     e.preventDefault();
-    const data = { ...formData, products: cart, total: +calcTotal(cart) };
+    const data = { ...formData, products: cart, total: +calcTotal(cart).replace(',','.') };
     const config = { headers: { authorization: getLocalStorage('user').token } };
     try {
       axios.post(POST_CHECKOUT, data, config);
