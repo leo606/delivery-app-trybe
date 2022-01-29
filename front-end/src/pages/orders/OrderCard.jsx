@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import formatSaleId from '../../helpers/formatSaleId';
@@ -7,9 +7,14 @@ import formatCurrency from '../../helpers/formatCurrency';
 
 function OrderCard({ order }) {
   const { id, totalPrice, saleDate, status } = order;
+  const navigate = useNavigate();
+
+  function redirectToDetails() {
+    navigate(`${id}`);
+  }
 
   return (
-    <Link to={ `${id}` }>
+    <button type="button" onClick={ redirectToDetails }>
       <div>
         <div>
           <p>Pedido</p>
@@ -27,7 +32,7 @@ function OrderCard({ order }) {
           {formatCurrency(totalPrice)}
         </div>
       </div>
-    </Link>
+    </button>
   );
 }
 
