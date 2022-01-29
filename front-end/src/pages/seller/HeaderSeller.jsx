@@ -12,10 +12,10 @@ function HeaderAdmin() {
   return (
     <nav>
       <Link
-        to="/admin/manage"
+        to="/seller/orders"
         data-testid="customer_products__element-navbar-link-orders"
       >
-        GERENCIAR USUÁRIOS
+        PEDIDOS
       </Link>
       <p data-testid="customer_products__element-navbar-user-full-name">{ name }</p>
       <Link
