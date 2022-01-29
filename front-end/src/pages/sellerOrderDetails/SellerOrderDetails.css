@@ -1,0 +1,31 @@
+.order-details-header {
+  align-items: center;
+  background-color: lightgray;
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 1em;
+  width: 60vw;
+}
+
+table {
+  margin-bottom: 3em;
+  width: 60vw;
+}
+
+table thead {
+  background-color: lightgray;
+  text-align: center;
+}
+
+thead th {
+  padding: 9px;
+  word-break: keep-all;
+}
+
+tbody td {
+  padding: 3px 9px;
+}
+
+tbody tr:nth-child( even ) {
+  background-color: whitesmoke;
+}
