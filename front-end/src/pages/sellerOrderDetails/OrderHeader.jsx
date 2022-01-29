@@ -44,11 +44,6 @@ OrderHeader.propTypes = {
     seller: PropTypes.shape({
       name: PropTypes.string,
     }),
-    // products: PropTypes.shape({
-    //   name: PropTypes.string,
-    //   price: PropTypes.string,
-    //   map: PropTypes.func,
-    // }),
   }).isRequired,
 };
 
