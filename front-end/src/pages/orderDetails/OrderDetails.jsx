@@ -7,6 +7,7 @@ import Header from '../../components/header/Header';
 import OrderHeader from './OrderHeader';
 import ItemsTable from './ItemsTable';
 import formatCurrency from '../../helpers/formatCurrency';
+import './OrderDetails.css';
 
 const ORDER_URL = 'http://localhost:3001/sale';
 
@@ -37,7 +38,7 @@ function OrderDetails() {
       <Header />
       <main>
         <h1>Detalhe do Pedido</h1>
-        <div>
+        <div className="container">
           <OrderHeader sale={ sale } />
           <ItemsTable sale={ sale } />
           <div data-testid="customer_order_details__element-order-total-price">

@@ -5,7 +5,7 @@ import formatSaleId from '../../helpers/formatSaleId';
 
 function OrderHeader({ sale: { id, seller, status, saleDate } }) {
   return (
-    <div>
+    <div className="order-details-header">
       <div data-testid="customer_order_details__element-order-details-label-order-id">
         {formatSaleId(id)}
       </div>
