@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import axios from 'axios';
-import getLocalStorage from '../../helpers/getLocalStorage';
 
+import getLocalStorage from '../../helpers/getLocalStorage';
 import Header from '../../components/header/Header';
+import OrderHeader from './OrderHeader';
 import ItemsTable from './ItemsTable';
+import formatCurrency from '../../helpers/formatCurrency';
 
 const ORDER_URL = 'http://localhost:3001/sale';
 
@@ -36,7 +38,13 @@ function OrderDetails() {
       <main>
         <h1>Detalhe do Pedido</h1>
         <div>
+          <OrderHeader sale={ sale } />
           <ItemsTable sale={ sale } />
+          <div data-testid="customer_order_details__element-order-total-price">
+            Total:
+            {' '}
+            {formatCurrency(sale.totalPrice)}
+          </div>
         </div>
       </main>
     </>
