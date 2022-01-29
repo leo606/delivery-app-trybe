@@ -1,7 +1,8 @@
 const express = require('express');
+const { decode } = require('../../middlewares/validations');
 
 const router = express.Router({ mergeParams: true });
 
-router.post('/', require('./create'));
+router.get('/orders', decode, require('./listClientOrders'));
 
 module.exports = router;
