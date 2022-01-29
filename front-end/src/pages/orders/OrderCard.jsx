@@ -23,7 +23,9 @@ function OrderCard({ order }) {
         <div data-testid={ `customer_orders__element-order-date-${id}` }>
           {new Date(saleDate).toLocaleDateString('pt-BR')}
         </div>
-        <div>{formatCurrency(totalPrice)}</div>
+        <div data-testid={ `customer_orders__element-card-price-${id}` }>
+          {formatCurrency(totalPrice)}
+        </div>
       </div>
     </Link>
   );
