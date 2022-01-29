@@ -4,6 +4,7 @@ module.exports = async (email, password) => {
   try {
     const user = await model.users.findOne({
       where: { email, password },
+      attributes: { exclude: ['password'] },
     });
     if (!user) {
       return { err: { code: 'notFound', message: 'user not found' } };
