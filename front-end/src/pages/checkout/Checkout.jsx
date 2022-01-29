@@ -6,6 +6,7 @@ import calcTotal from '../../helpers/calcTotal';
 import Header from '../../components/header/Header';
 import CartTable from './CartTable';
 import AdressForm from './AdressForm';
+import './Checkout.css';
 
 function Checkout() {
   const cart = useSelector((store) => store.cart);
