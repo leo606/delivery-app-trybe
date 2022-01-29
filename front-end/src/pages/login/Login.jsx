@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import status from '../../helpers/status';
 import md5Serialize from '../../helpers/md5Serialize';
 import { loginValidate } from '../../helpers/formValidations';
+import getLocalStorage from '../../helpers/getLocalStorage';
 import './login.css';
 
 const LOGIN_URL = 'http://localhost:3001/login';
@@ -13,6 +14,12 @@ function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [warning, setWarning] = useState('none');
+
+  useEffect(() => {
+    if (getLocalStorage('user')) {
+      navigate('/customer/products');
+    }
+  }, [navigate]);
 
   const handleChange = ({ target: { value, name } }) => {
     if (name === 'email') setEmail(value);
