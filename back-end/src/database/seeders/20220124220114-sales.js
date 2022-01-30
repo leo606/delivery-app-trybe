@@ -12,7 +12,7 @@ module.exports = {
           delivery_address: "address",
           delivery_number: "23",
           sale_date: new Date(Date.now()),
-          status: "ordered",
+          status: "Pendente",
         },
         {
           user_id: 2,
@@ -21,7 +21,7 @@ module.exports = {
           delivery_address: "address two",
           delivery_number: "345",
           sale_date: new Date(Date.now()),
-          status: "ordered",
+          status: "Preparando",
         },
         {
           user_id: 2,
@@ -30,7 +30,16 @@ module.exports = {
           delivery_address: "address three",
           delivery_number: "7",
           sale_date: new Date(Date.now()),
-          status: "finished",
+          status: "Em Trânsito",
+        },
+        {
+          user_id: 2,
+          seller_id: 2,
+          total_price: 99.9,
+          delivery_address: "address four",
+          delivery_number: "87",
+          sale_date: new Date(Date.now()),
+          status: "Entregue",
         },
       ],
       {}
