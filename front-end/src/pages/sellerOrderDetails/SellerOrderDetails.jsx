@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import axios from 'axios';
-
+import getSocket from '../../sockets/getSocket';
 import getLocalStorage from '../../helpers/getLocalStorage';
 import Header from '../../components/header/Header';
 import OrderHeader from './OrderHeader';
@@ -9,11 +9,14 @@ import ItemsTable from './ItemsTable';
 import formatCurrency from '../../helpers/formatCurrency';
 import './SellerOrderDetails.css';
 
+const socket = getSocket();
+
 const ORDER_URL = 'http://localhost:3001/sale';
 
 function SellerOrderDetails() {
   const { saleId } = useParams();
   const [sale, setSale] = useState({});
+  socket.on('sellerStatus', (status) => setSale({ ...sale, status }));
 
   useEffect(() => {
     async function fetchOrder() {
