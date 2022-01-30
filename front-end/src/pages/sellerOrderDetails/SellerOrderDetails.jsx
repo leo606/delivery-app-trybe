@@ -3,7 +3,7 @@ import { useParams } from 'react-router';
 import axios from 'axios';
 import getSocket from '../../sockets/getSocket';
 import getLocalStorage from '../../helpers/getLocalStorage';
-import Header from '../../components/header/Header';
+import HeaderAdmin from '../seller/HeaderSeller';
 import OrderHeader from './OrderHeader';
 import ItemsTable from './ItemsTable';
 import formatCurrency from '../../helpers/formatCurrency';
@@ -43,7 +43,7 @@ function SellerOrderDetails() {
 
   return (
     <>
-      <Header />
+      <HeaderAdmin />
       <main>
         <h1>Detalhe do Pedido</h1>
         <div className="container">

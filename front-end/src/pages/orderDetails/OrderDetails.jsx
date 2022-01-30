@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import axios from 'axios';
-
 import getLocalStorage from '../../helpers/getLocalStorage';
 import Header from '../../components/header/Header';
 import OrderHeader from './OrderHeader';
@@ -30,7 +29,6 @@ function OrderDetails() {
         const config = {
           headers: { authorization: getLocalStorage('user').token },
         };
-
         const res = await axios.get(`${ORDER_URL}/${saleId}`, config);
         setSale(res.data);
       } catch (e) {
