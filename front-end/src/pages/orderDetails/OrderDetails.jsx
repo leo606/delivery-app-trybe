@@ -8,12 +8,21 @@ import OrderHeader from './OrderHeader';
 import ItemsTable from './ItemsTable';
 import formatCurrency from '../../helpers/formatCurrency';
 import './OrderDetails.css';
+import getSocket from '../../sockets/getSocket';
+
+const socket = getSocket();
 
 const ORDER_URL = 'http://localhost:3001/sale';
 
 function OrderDetails() {
   const { saleId } = useParams();
   const [sale, setSale] = useState({});
+
+  socket.on('saleStatus', ({ id, status }) => {
+    if (id === sale.id) {
+      setSale({ ...sale, status });
+    }
+  });
 
   useEffect(() => {
     async function fetchOrder() {

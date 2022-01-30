@@ -16,7 +16,12 @@ const ORDER_URL = 'http://localhost:3001/sale';
 function SellerOrderDetails() {
   const { saleId } = useParams();
   const [sale, setSale] = useState({});
-  socket.on('sellerStatus', (status) => setSale({ ...sale, status }));
+  socket.on('saleStatus', ({ id, status }) => {
+    console.log(sale);
+    if (id === sale.id) {
+      setSale({ ...sale, status });
+    }
+  });
 
   useEffect(() => {
     async function fetchOrder() {

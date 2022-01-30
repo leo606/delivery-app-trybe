@@ -1,9 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import getSocket from '../../sockets/getSocket';
 
 import formatSaleId from '../../helpers/formatSaleId';
 
+const socket = getSocket();
+
 function OrderHeader({ sale: { id, seller, status, saleDate } }) {
+  function handleRecived() {
+    socket.emit('recived', id);
+  }
   return (
     <div className="order-details-header">
       <div data-testid="customer_order_details__element-order-details-label-order-id">
@@ -23,7 +29,8 @@ function OrderHeader({ sale: { id, seller, status, saleDate } }) {
       <button
         data-testid="customer_order_details__button-delivery-check"
         type="button"
-        disabled
+        disabled={ status !== 'Em Trânsito' }
+        onClick={ handleRecived }
       >
         MARCAR COMO ENTREGUE
       </button>
