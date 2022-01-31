@@ -28,7 +28,8 @@ function Seller() {
       }
     }
     fetchOrders();
-  }, []);
+    return socket.on('saleStatus', () => {});
+  }, [socket]);
 
   return (
     <div>

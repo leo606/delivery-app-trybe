@@ -29,7 +29,8 @@ function Orders() {
       }
     }
     fetchOrders();
-  }, []);
+    return socket.on('saleStatus', () => {});
+  }, [socket]);
 
   return (
     <>
