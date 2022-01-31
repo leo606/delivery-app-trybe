@@ -1,5 +1,5 @@
 import { io } from 'socket.io-client';
-// import getLocalStorage from '../helpers/getLocalStorage';
+import getLocalStorage from '../helpers/getLocalStorage';
 
 const SOCKET_URL = 'http://localhost:3001';
 
@@ -12,4 +12,7 @@ export function newConn(id, role) {
 
 export default function getSocket() {
   if (socket) return socket;
+  const user = getLocalStorage('user');
+  newConn(user.id, user.role);
+  return socket;
 }
