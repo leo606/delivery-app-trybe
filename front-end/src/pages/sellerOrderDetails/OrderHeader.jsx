@@ -3,14 +3,13 @@ import PropTypes from 'prop-types';
 import getSocket from '../../sockets/getSocket';
 import formatSaleId from '../../helpers/formatSaleId';
 
-const socket = getSocket();
-
-function OrderHeader({ sale: { id, status, saleDate } }) {
+function OrderHeader({ sale: { id, status, saleDate, userId } }) {
+  const socket = getSocket();
   function handlePrepare() {
-    socket.emit('prepare', id);
+    socket.emit('prepare', { saleId: id, userId });
   }
   function handleShip() {
-    socket.emit('ship', id);
+    socket.emit('ship', { saleId: id, userId });
   }
   return (
     <div className="order-details-header">

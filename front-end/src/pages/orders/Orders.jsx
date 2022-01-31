@@ -4,11 +4,17 @@ import Header from '../../components/header/Header';
 
 import getLocalStorage from '../../helpers/getLocalStorage';
 import OrderCard from './OrderCard';
+import getSocket from '../../sockets/getSocket';
 
 const ORDERS_LIST_URL = 'http://localhost:3001/customer/orders';
 
 function Orders() {
   const [orders, setOrders] = useState([]);
+  const socket = getSocket();
+
+  socket.on('saleStatus', ({ id, status }) => {
+    setOrders((prevState) => prevState.map((o) => (o.id === id ? { ...o, status } : o)));
+  });
 
   useEffect(() => {
     async function fetchOrders() {

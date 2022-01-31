@@ -9,18 +9,15 @@ import formatCurrency from '../../helpers/formatCurrency';
 import './OrderDetails.css';
 import getSocket from '../../sockets/getSocket';
 
-const socket = getSocket();
-
 const ORDER_URL = 'http://localhost:3001/sale';
 
 function OrderDetails() {
   const { saleId } = useParams();
   const [sale, setSale] = useState({});
+  const socket = getSocket();
 
-  socket.on('saleStatus', ({ id, status }) => {
-    if (id === sale.id) {
-      setSale({ ...sale, status });
-    }
+  socket.on('saleStatus', ({ status }) => {
+    setSale({ ...sale, status });
   });
 
   useEffect(() => {

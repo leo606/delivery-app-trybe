@@ -4,11 +4,10 @@ import getSocket from '../../sockets/getSocket';
 
 import formatSaleId from '../../helpers/formatSaleId';
 
-const socket = getSocket();
-
-function OrderHeader({ sale: { id, seller, status, saleDate } }) {
+function OrderHeader({ sale: { id, seller, status, saleDate, sellerId } }) {
   function handleRecived() {
-    socket.emit('recived', id);
+    const socket = getSocket();
+    socket.emit('recived', { saleId: id, sellerId });
   }
   return (
     <div className="order-details-header">
@@ -42,6 +41,7 @@ OrderHeader.propTypes = {
   sale: PropTypes.shape({
     id: PropTypes.number,
     userId: PropTypes.number,
+    sellerId: PropTypes.number,
     totalPrice: PropTypes.string,
     saleDate: PropTypes.string,
     status: PropTypes.string,

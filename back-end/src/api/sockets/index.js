@@ -1,18 +1,48 @@
+/*eslint-disable*/
 const { updateSaleStatus } = require('../../services/sales');
 
+let onlineUsers = [];
+
 module.exports = (io) => io.on('connection', (socket) => {
-  socket.on('prepare', (id) => {
-    updateSaleStatus(id, 'Preparando')
-      .then(() => io.emit('saleStatus', { id, status: 'Preparando' }));
+  socket.on('newConn', (userData) => {
+    onlineUsers.push({ ...userData, socketId: socket.id })
   });
 
-  socket.on('ship', (id) => {
-    updateSaleStatus(id, 'Em Trânsito')
-      .then(() => io.emit('saleStatus', { id, status: 'Em Trânsito' }));
+  socket.on('prepare', ({ saleId, userId }) => {
+    const user = onlineUsers.find((user) => user.id === userId);
+    console.log(user);
+    if (user) {
+      updateSaleStatus(saleId, 'Preparando')
+        .then(() => {
+          io.to(user.socketId).emit('saleStatus', { status: 'Preparando' })
+          socket.emit('saleStatus', {status: 'Preparando'})
+        });
+    }
   });
 
-  socket.on('recived', (id) => {
-    updateSaleStatus(id, 'Entregue')
-      .then(() => io.emit('saleStatus', { id, status: 'Entregue' }));
+  socket.on('ship', ({ saleId, userId }) => {
+    const { socketId } = onlineUsers.find((user) => user.id === userId);
+    if (socketId) {
+      updateSaleStatus(saleId, 'Em Trânsito')
+        .then(() => {
+          io.to(socketId).emit('saleStatus', { status: 'Em Trânsito' })
+          socket.emit('saleStatus',  { status: 'Em Trânsito' })
+        });
+    }
   });
+
+  socket.on('recived', ({ saleId, sellerId }) => {
+    const { socketId } = onlineUsers.find((user) => user.id === sellerId);
+    if (socketId) {
+      updateSaleStatus(saleId, 'Entregue')
+        .then(() => {
+          io.to(socketId).emit('saleStatus', { saleId, status: 'Entregue' })
+          socket.emit("saleStatus", {saleId, status: 'Entregue'})
+        });
+    }
+  });
+
+  socket.on('disconnect', ()=>{
+    onlineUsers = [...onlineUsers.filter(({socketId})=> socketId !== socket.id)]
+  })
 });

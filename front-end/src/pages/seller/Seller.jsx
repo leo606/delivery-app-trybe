@@ -5,12 +5,12 @@ import OrderCard from './OrderCard';
 import getLocalStorage from '../../helpers/getLocalStorage';
 import getSocket from '../../sockets/getSocket';
 
-const socket = getSocket();
-
 const ORDERS_LIST_URL = 'http://localhost:3001/sale/seller';
 
 function Seller() {
   const [orders, setOrders] = useState([]);
+  const socket = getSocket();
+
   socket.on('saleStatus', ({ id, status }) => {
     setOrders((prevState) => prevState.map((o) => (o.id === id ? { ...o, status } : o)));
   });
