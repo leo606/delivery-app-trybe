@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import getLocalStorage from '../../helpers/getLocalStorage';
+import getSocket from '../../sockets/getSocket';
 
 import calcTotal from '../../helpers/calcTotal';
 
@@ -16,6 +17,7 @@ function AdressForm() {
     deliveryAddress: '',
     deliveryNumber: '',
   });
+  const socket = getSocket();
 
   function handleChange({ target }) {
     setFormData((prev) => ({ ...prev, [target.name]: target.value }));
@@ -33,10 +35,10 @@ function AdressForm() {
     };
     try {
       const posted = await axios.post(POST_CHECKOUT, data, config);
+      socket.emit('newSale', posted.data);
       return navigate(`/customer/orders/${posted.data.id}`);
     } catch (err) {
       console.log(err);
-      console.log(err.message);
     }
   }
 

@@ -15,6 +15,11 @@ function Seller() {
     setOrders((prevState) => prevState.map((o) => (o.id === id ? { ...o, status } : o)));
   });
 
+  socket.on('newSale', (newSale) => {
+    console.log('NEW', newSale);
+    setOrders([...orders, newSale]);
+  });
+
   useEffect(() => {
     async function fetchOrders() {
       try {

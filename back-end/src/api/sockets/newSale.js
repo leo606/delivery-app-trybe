@@ -2,13 +2,11 @@ const { getById } = require('../../services/sales');
 
 module.exports = (sale, io, onlineUsers) => {
   getById(sale.id).then((s) => {
-    const sockets = onlineUsers.filter(({ id }) => id === s.userId || id === s.sellerId)
-      .map(({ socketId }) => socketId);
+    const user = onlineUsers.find(({ id }) => id === s.sellerId);
 
-    if (sockets.length) {
-      console.log('emiting');
-      const emited = io.to(sockets).emit('newSale', s);
-      console.log(emited);
+    if (user.socketId) {
+      console.log(user.socketId);
+      io.to(user.socketId).emit('newSale', s);
     }
   });
 };
