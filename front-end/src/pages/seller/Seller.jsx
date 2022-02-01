@@ -16,7 +16,6 @@ function Seller() {
   });
 
   socket.on('newSale', (newSale) => {
-    console.log('NEW', newSale);
     setOrders([...orders, newSale]);
   });
 

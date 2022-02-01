@@ -7,8 +7,8 @@ module.exports = ({ saleId, userId }, io, socket, onlineUsers) => {
     if (user) {
       updateSaleStatus(saleId, SALE_STATUS)
         .then(() => {
-          io.to(user.socketId).emit('saleStatus', { status: SALE_STATUS });
-          socket.emit('saleStatus', { status: SALE_STATUS });
+          io.to(user.socketId).emit('saleStatus', { id: saleId, status: SALE_STATUS });
+          socket.emit('saleStatus', { id: saleId, status: SALE_STATUS });
         });
     }
 };

@@ -33,7 +33,8 @@ function OrderDetails() {
       }
     }
     fetchOrder();
-  }, [saleId]);
+    return socket.on('saleStatus', () => {});
+  }, [saleId, socket]);
 
   if (!sale.id) return <span>loading...</span>;
 
