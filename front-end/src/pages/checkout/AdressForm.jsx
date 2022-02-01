@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -8,6 +8,7 @@ import getSocket from '../../sockets/getSocket';
 import calcTotal from '../../helpers/calcTotal';
 
 const POST_CHECKOUT = 'http://localhost:3001/checkout';
+const GET_SELLERS = 'http://localhost:3001/checkout/sellers';
 
 function AdressForm() {
   const cart = useSelector((state) => state.cart);
@@ -17,7 +18,22 @@ function AdressForm() {
     deliveryAddress: '',
     deliveryNumber: '',
   });
+  const [sellers, setSellers] = useState([]);
   const socket = getSocket();
+
+  useEffect(() => {
+    async function getSellers() {
+      try {
+        const headers = { authorization: getLocalStorage('user').token };
+        const { data } = await axios.get(GET_SELLERS, { headers });
+        setSellers([...data]);
+        setFormData({ ...setFormData, sellerId: data[0].id });
+      } catch (e) {
+        console.log(e);
+      }
+    }
+    getSellers();
+  }, []);
 
   function handleChange({ target }) {
     setFormData((prev) => ({ ...prev, [target.name]: target.value }));
@@ -25,6 +41,7 @@ function AdressForm() {
 
   async function postSale(e) {
     e.preventDefault();
+    console.log(formData);
     const data = {
       ...formData,
       products: cart,
@@ -51,9 +68,11 @@ function AdressForm() {
           onChange={ handleChange }
           data-testid="customer_checkout__select-seller"
         >
-          <option value="1">x</option>
-          <option value="2">y</option>
-          <option value="3">z</option>
+          {sellers.map(({ id, name }) => (
+            <option key={ id } value={ id }>
+              {name}
+            </option>
+          ))}
         </select>
         <input
           type="text"
