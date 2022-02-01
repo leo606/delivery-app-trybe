@@ -12,6 +12,7 @@ function Seller() {
   const socket = getSocket();
 
   socket.on('saleStatus', ({ id, status }) => {
+    console.log(id, status);
     setOrders((prevState) => prevState.map((o) => (o.id === id ? { ...o, status } : o)));
   });
 

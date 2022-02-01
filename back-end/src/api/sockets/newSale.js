@@ -4,9 +4,9 @@ module.exports = (sale, io, onlineUsers) => {
   getById(sale.id).then((s) => {
     const user = onlineUsers.find(({ id }) => id === s.sellerId);
 
-    if (user.socketId) {
+    if (user.socket) {
       console.log(user.socketId);
-      io.to(user.socketId).emit('newSale', s);
+      user.socket.emit('newSale', s);
     }
   });
 };

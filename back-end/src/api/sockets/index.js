@@ -7,7 +7,7 @@ let onlineUsers = [];
 
 module.exports = (io) => io.on('connection', (socket) => {
   socket.on('newConn', (userData) => {
-    onlineUsers.push({ ...userData, socketId: socket.id });
+    onlineUsers.push({ ...userData, socket });
     console.log(onlineUsers);
   });
 
