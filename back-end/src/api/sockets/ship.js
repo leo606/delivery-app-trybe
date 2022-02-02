@@ -2,13 +2,13 @@ const { updateSaleStatus } = require('../../services/sales');
 
 const SALE_STATUS = 'Em Trânsito';
 
-module.exports = ({ saleId, userId }, io, socket, onlineUsers) => {
-  const { socket: socketUser } = onlineUsers.find((user) => user.id === userId);
-    if (socketUser) {
-      updateSaleStatus(saleId, SALE_STATUS)
-        .then(() => {
-          socketUser.emit('saleStatus', { id: saleId, status: SALE_STATUS });
-          socket.emit('saleStatus', { id: saleId, status: SALE_STATUS });
-        });
-    }
+module.exports = ({ saleId, userId }, socket, onlineUsers) => {
+  updateSaleStatus(saleId, SALE_STATUS)
+    .then(() => {
+      const user = onlineUsers.find((userOnline) => userOnline.id === userId);
+      if (user) {
+        user.socket.emit('saleStatus', { id: saleId, status: SALE_STATUS });
+      }
+      socket.emit('saleStatus', { id: saleId, status: SALE_STATUS });
+    });
 };

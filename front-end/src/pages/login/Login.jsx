@@ -5,7 +5,6 @@ import status from '../../helpers/status';
 import md5Serialize from '../../helpers/md5Serialize';
 import { loginValidate } from '../../helpers/formValidations';
 import getLocalStorage from '../../helpers/getLocalStorage';
-import { newConn } from '../../sockets/getSocket';
 import './login.css';
 
 const LOGIN_URL = 'http://localhost:3001/login';
@@ -37,7 +36,6 @@ function Login() {
       });
       if (res.status === status.OK) {
         localStorage.setItem('user', JSON.stringify(res.data));
-        newConn(res.data.id, res.data.role);
         if (res.data.role === 'customer') navigate('/customer/products');
         if (res.data.role === 'administrator') navigate('/admin/manage');
         if (res.data.role === 'seller') navigate('/seller/orders');
