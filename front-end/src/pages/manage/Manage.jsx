@@ -36,7 +36,7 @@ function Manage() {
   return (
     <>
       <HeaderAdmin />
-      <NewUserForm />
+      <NewUserForm setUsers={ setUsers } />
       <table>
         <thead>
           <tr>

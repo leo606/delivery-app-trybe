@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import axios from 'axios';
 import { registerValidate } from '../../helpers/formValidations';
 import md5Serialize from '../../helpers/md5Serialize';
@@ -7,7 +8,7 @@ import status from '../../helpers/status';
 
 const REGISTER_ADM_URL = 'http://localhost:3001/register/admin';
 
-function NewUserForm() {
+function NewUserForm({ setUsers }) {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -24,11 +25,12 @@ function NewUserForm() {
     e.preventDefault();
     try {
       const headers = { authorization: getLocalStorage('user').token };
-      await axios.post(
+      const res = await axios.post(
         REGISTER_ADM_URL,
         { ...formData, password: md5Serialize(formData.password) },
         { headers },
       );
+      setUsers((prev) => [...prev, res.data]);
     } catch (err) {
       if (err.response.status === status.DUPLICATED) setWarning('block');
     }
@@ -90,5 +92,9 @@ function NewUserForm() {
     </>
   );
 }
+
+NewUserForm.propTypes = {
+  setUsers: PropTypes.func.isRequired,
+};
 
 export default NewUserForm;
