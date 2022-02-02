@@ -14,7 +14,7 @@ function Manage() {
   function deleteUser(id) {
     try {
       const headers = { authorization: getLocalStorage('user').token };
-      axios.delete(DELETE_URL, { id }, { headers });
+      axios.delete(`${DELETE_URL}/${id}`, { headers });
       setUsers(users.filter((user) => user.id !== id));
     } catch (e) {
       console.log(e);

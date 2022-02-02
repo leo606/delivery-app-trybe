@@ -3,6 +3,7 @@ const getByEmailAndPass = require('./getByEmailAndPass');
 const create = require('./create');
 const listSellers = require('./listSellers');
 const listUsersNonAdmin = require('./listUsersNonAdmin');
+const removeUser = require('./removeUser');
 
 module.exports = {
   getByEmail,
@@ -10,4 +11,5 @@ module.exports = {
   create,
   listSellers,
   listUsersNonAdmin,
+  removeUser,
 };
