@@ -8,7 +8,7 @@ import getSocket from '../../sockets/getSocket';
 import calcTotal from '../../helpers/calcTotal';
 
 const POST_CHECKOUT = 'http://localhost:3001/checkout';
-const GET_SELLERS = 'http://localhost:3001/checkout/sellers';
+const GET_SELLERS = 'http://localhost:3001/users/sellers';
 
 function AdressForm() {
   const cart = useSelector((state) => state.cart);
@@ -47,11 +47,9 @@ function AdressForm() {
       products: cart,
       total: +calcTotal(cart).replace(',', '.'),
     };
-    const config = {
-      headers: { authorization: getLocalStorage('user').token },
-    };
+    const headers = { authorization: getLocalStorage('user').token };
     try {
-      const posted = await axios.post(POST_CHECKOUT, data, config);
+      const posted = await axios.post(POST_CHECKOUT, data, { headers });
       socket.emit('newSale', posted.data);
       return navigate(`/customer/orders/${posted.data.id}`);
     } catch (err) {

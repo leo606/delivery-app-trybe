@@ -9,6 +9,6 @@ router.use('/checkout', require('./checkout/router'));
 router.use('/products', require('./products/router'));
 router.use('/sale', require('./sales/route'));
 router.use('/customer', require('./customer/router'));
-router.use('/admin', require('./admin/router'));
+router.use('/users', require('./users/router'));
 
 module.exports = router;
