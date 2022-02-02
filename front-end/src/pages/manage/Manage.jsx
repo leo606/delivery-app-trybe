@@ -6,14 +6,14 @@ import HeaderAdmin from './HeaderAdmin';
 import NewUserForm from './NewUserForm';
 
 const DELETE_URL = 'http://localhost:3001/register';
-const GET_USERS_URL = 'http://localhost:3001/register';
+const GET_USERS_URL = 'http://localhost:3001/users/all';
 
 function Manage() {
   const [users, setUsers] = useState([]);
-  const headers = { authorization: getLocalStorage('user').token };
 
   function deleteUser(id) {
     try {
+      const headers = { authorization: getLocalStorage('user').token };
       axios.delete(DELETE_URL, { id }, { headers });
       setUsers(users.filter((user) => user.id !== id));
     } catch (e) {
@@ -22,12 +22,16 @@ function Manage() {
   }
 
   useEffect(() => {
-    try {
-      const res = axios.get(GET_USERS_URL);
-      setUsers(res.data);
-    } catch (e) {
-      console.log(e);
+    async function fetchUsers() {
+      try {
+        const headers = { authorization: getLocalStorage('user').token };
+        const res = await axios.get(GET_USERS_URL, { headers });
+        setUsers(res.data);
+      } catch (e) {
+        console.log(e);
+      }
     }
+    fetchUsers();
   }, []);
   return (
     <>
