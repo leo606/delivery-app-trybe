@@ -22,6 +22,11 @@
   height: 2.5em;
 }
 
+.order-details-header button:disabled {
+  background-color: #7dc788;
+  color: #45454e;
+}
+
 table {
   margin-bottom: 3em;
   width: 60vw;

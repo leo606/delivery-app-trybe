@@ -4,11 +4,11 @@
 
 .loginForm {
   align-items: center;
-  background-color: #44b2c0;
-  border-radius: 8%;
+  background-color: #2d93dd;
+  border-radius: 10px;
   display: flex;
   flex-flow: column nowrap;
-  height: 200px;
+  height: 40vh;
   justify-content: space-evenly;
   margin: auto;
   width: 25%;
@@ -17,9 +17,15 @@
 .buttons {
   display: flex;
   flex-flow: column nowrap;
-  height: 60px;
   justify-content: space-evenly;
-  width: 150px;
+}
+
+.buttons button {
+  border: none;
+  border-radius: 4px;
+  font-weight: 600;
+  height: 2em;
+  margin-bottom: 0.6em;
 }
 
 .inputs {
@@ -29,6 +35,13 @@
   height: 60px;
   justify-content: space-evenly;
   width: 180px;
+}
+
+.inputs input {
+  border: none;
+  border-radius: 4px;
+  margin-bottom: 0.6em;
+  padding: 0.6em;
 }
 
 .warning {
