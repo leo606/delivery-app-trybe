@@ -1,0 +1,58 @@
+.main-orders-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  margin: 1em auto;
+  max-width: 90vw;
+}
+
+.order-list-btn {
+  background-color: #fdfdf8;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 0 9px 3px lightgrey;
+  display: flex;
+  flex-grow: 0;
+  margin: 1em 0;
+  padding: 1em 0.5em;
+  width: 300px;
+}
+
+.order-list-btn:hover {
+  box-shadow: 0 0 9px 6px lightgrey;
+
+}
+
+.order-list-btn-left {
+  font-size: 1.2em;
+}
+
+.order-list-btn-right {
+  height: 100%;
+  width: 100%;
+}
+
+.order-list-btn-right div:nth-child( 1 ) {
+  font-size: 1.2em;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.order-list-btn-right div:nth-child( 2 ) {
+  font-size: 1.2em;
+  font-weight: 600;
+}
+
+.order-list-btn-right div:nth-child( 3 ) {
+  margin-top: 9px;
+}
+
+.list-btn-order {
+  padding: 0.3em;
+}
+
+.list-btn-order p {
+  display: inline;
+  font-weight: 900;
+  margin: 0 3px;
+}

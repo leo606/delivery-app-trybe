@@ -41,12 +41,15 @@ function OrderDetails() {
   return (
     <>
       <Header />
-      <main>
+      <main className="main-details">
         <h1>Detalhe do Pedido</h1>
         <div className="container">
           <OrderHeader sale={ sale } />
           <ItemsTable sale={ sale } />
-          <div data-testid="customer_order_details__element-order-total-price">
+          <div
+            className="total-value"
+            data-testid="customer_order_details__element-order-total-price"
+          >
             Total:
             {' '}
             {formatCurrency(sale.totalPrice)}

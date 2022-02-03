@@ -5,14 +5,7 @@ import formatSaleId from '../../helpers/formatSaleId';
 import formatCurrency from '../../helpers/formatCurrency';
 
 function OrderCard({ order }) {
-  const {
-    id,
-    totalPrice,
-    deliveryAddress,
-    deliveryNumber,
-    saleDate,
-    status,
-  } = order;
+  const { id, totalPrice, deliveryAddress, deliveryNumber, saleDate, status } = order;
   const navigate = useNavigate();
 
   const onClick = () => {
@@ -20,42 +13,38 @@ function OrderCard({ order }) {
   };
 
   return (
-    <button type="button" onClick={ onClick }>
-      <div>
-        <p>Pedido</p>
-        <p
-          data-testid={ `seller_orders__element-order-id-${id}` }
-        >
-          { formatSaleId(id) }
-        </p>
-      </div>
-      <div>
-        <div>
-          <p
-            data-testid={ `seller_orders__element-delivery-status-${id}` }
-          >
-            { status }
+    <button type="button" className="order-list-btn" onClick={ onClick }>
+      <div className="order-list-btn-left">
+        <div className="list-btn-order">
+          <p>Pedido</p>
+          <p data-testid={ `seller_orders__element-order-id-${id}` }>
+            {formatSaleId(id)}
           </p>
-          <div>
-            <p
-              data-testid={ `seller_orders__element-order-date-${id}` }
-            >
-              { new Date(saleDate).toLocaleDateString('pt-BR') }
-            </p>
-            <p
-              data-testid={ `seller_orders__element-card-price-${id}` }
-            >
-              { `R$ ${formatCurrency(totalPrice)}` }
-            </p>
-          </div>
+        </div>
+        <div>
+          <p data-testid={ `seller_orders__element-delivery-status-${id}` }>
+            {status}
+          </p>
         </div>
       </div>
-      <div>
-        <span
-          data-testid={ `seller_orders__element-card-address-${id}` }
+      <div className="order-list-btn-right">
+        <div
+          className="list-btn-date"
+          data-testid={ `seller_orders__element-order-date-${id}` }
         >
-          { `${deliveryAddress}, ${deliveryNumber}` }
-        </span>
+          {new Date(saleDate).toLocaleDateString('pt-BR')}
+        </div>
+        <div
+          className="list-btn-value"
+          data-testid={ `seller_orders__element-card-price-${id}` }
+        >
+          {`R$ ${formatCurrency(totalPrice)}`}
+        </div>
+        <div>
+          <span data-testid={ `seller_orders__element-card-address-${id}` }>
+            {`${deliveryAddress}, ${deliveryNumber}`}
+          </span>
+        </div>
       </div>
     </button>
   );

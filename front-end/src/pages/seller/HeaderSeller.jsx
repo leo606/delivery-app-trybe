@@ -10,22 +10,25 @@ function HeaderAdmin() {
   };
 
   return (
-    <nav>
-      <Link
-        to="/seller/orders"
-        data-testid="customer_products__element-navbar-link-orders"
-      >
-        PEDIDOS
-      </Link>
+    <header>
+      <nav>
+        <Link
+          to="/seller/orders"
+          data-testid="customer_products__element-navbar-link-orders"
+        >
+          PEDIDOS
+        </Link>
+      </nav>
       <p data-testid="customer_products__element-navbar-user-full-name">{ name }</p>
       <Link
         to="/login"
+        className="logout"
         data-testid="customer_products__element-navbar-link-logout"
         onClick={ logoutButton }
       >
         Sair
       </Link>
-    </nav>
+    </header>
   );
 }
 

@@ -11,22 +11,23 @@ function Header() {
   };
 
   return (
-    <nav className="header">
-      <div className="products">
+    <header>
+      <nav>
         <Link
+          className="products"
           to="/customer/products"
           data-testid="customer_products__element-navbar-link-products"
         >
           PRODUTOS
         </Link>
-      </div>
-      <Link
-        className="orders"
-        to="/customer/orders"
-        data-testid="customer_products__element-navbar-link-orders"
-      >
-        MEUS PEDIDOS
-      </Link>
+        <Link
+          className="orders"
+          to="/customer/orders"
+          data-testid="customer_products__element-navbar-link-orders"
+        >
+          MEUS PEDIDOS
+        </Link>
+      </nav>
       <p
         className="name"
         data-testid="customer_products__element-navbar-user-full-name"
@@ -41,7 +42,7 @@ function Header() {
       >
         Sair
       </Link>
-    </nav>
+    </header>
   );
 }
 

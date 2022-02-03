@@ -4,6 +4,7 @@ import HeaderSeller from './HeaderSeller';
 import OrderCard from './OrderCard';
 import getLocalStorage from '../../helpers/getLocalStorage';
 import getSocket from '../../sockets/getSocket';
+import '../orders/Orders.css';
 
 const ORDERS_LIST_URL = 'http://localhost:3001/sale/seller';
 
@@ -39,7 +40,7 @@ function Seller() {
   return (
     <div>
       <HeaderSeller />
-      <div>
+      <div className="main-orders-list">
         { orders.map((e, i) => <OrderCard key={ i } order={ e } />) }
       </div>
     </div>

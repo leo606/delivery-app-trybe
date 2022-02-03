@@ -58,11 +58,12 @@ function AdressForm() {
   }
 
   return (
-    <form onSubmit={ postSale }>
-      <div>
+    <form onSubmit={ postSale } className="checkout-form">
+      <label htmlFor="seller-select">
+        Seller
         <select
           name="sellerId"
-          id=""
+          id="seller-select"
           onChange={ handleChange }
           data-testid="customer_checkout__select-seller"
         >
@@ -72,19 +73,28 @@ function AdressForm() {
             </option>
           ))}
         </select>
+
+      </label>
+      <label htmlFor="address-input">
+        Address
         <input
           type="text"
+          id="address-input"
           name="deliveryAddress"
           onChange={ handleChange }
           data-testid="customer_checkout__input-address"
         />
+      </label>
+      <label htmlFor="number-input">
+        Number
         <input
           type="number"
+          id="number-input"
           name="deliveryNumber"
           onChange={ handleChange }
           data-testid="customer_checkout__input-addressNumber"
         />
-      </div>
+      </label>
       <button
         type="submit"
         data-testid="customer_checkout__button-submit-order"

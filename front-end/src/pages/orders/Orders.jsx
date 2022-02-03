@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Header from '../../components/header/Header';
+import './Orders.css';
 
 import getLocalStorage from '../../helpers/getLocalStorage';
 import OrderCard from './OrderCard';
@@ -35,7 +36,7 @@ function Orders() {
   return (
     <>
       <Header />
-      <main>
+      <main className="main-orders-list">
         {orders.map((o) => (<OrderCard key={ o.id } order={ o } />))}
       </main>
     </>

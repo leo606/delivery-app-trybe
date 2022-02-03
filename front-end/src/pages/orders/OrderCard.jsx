@@ -14,22 +14,37 @@ function OrderCard({ order }) {
   }
 
   return (
-    <button type="button" onClick={ redirectToDetails }>
-      <div>
-        <div>
+    <button
+      type="button"
+      className="order-list-btn"
+      onClick={ redirectToDetails }
+    >
+      <div className="order-list-btn-left">
+        <div className="list-btn-order">
           <p>Pedido</p>
           <p data-testid={ `customer_orders__element-order-id-${id}` }>
             {formatSaleId(id)}
           </p>
         </div>
-        <div data-testid={ `customer_orders__element-delivery-status-${id}` }>
+        <div
+          className="list-btn-status"
+          data-testid={ `customer_orders__element-delivery-status-${id}` }
+        >
           {status}
         </div>
-        <div data-testid={ `customer_orders__element-order-date-${id}` }>
+      </div>
+      <div className="order-list-btn-right">
+        <div
+          className="list-btn-date"
+          data-testid={ `customer_orders__element-order-date-${id}` }
+        >
           {new Date(saleDate).toLocaleDateString('pt-BR')}
         </div>
-        <div data-testid={ `customer_orders__element-card-price-${id}` }>
-          {formatCurrency(totalPrice)}
+        <div
+          className="list-btn-value"
+          data-testid={ `customer_orders__element-card-price-${id}` }
+        >
+          {`R$ ${formatCurrency(totalPrice)}`}
         </div>
       </div>
     </button>

@@ -14,11 +14,14 @@ function Checkout() {
   return (
     <div>
       <Header />
-      <main>
+      <main className="main-checkout">
         <section>
           <h1>Finalizar Pedido</h1>
           <CartTable />
-          <div data-testid="customer_checkout__element-order-total-price">
+          <div
+            className="total-value"
+            data-testid="customer_checkout__element-order-total-price"
+          >
             {`Total: R$ ${calcTotal(cart)}`}
           </div>
         </section>

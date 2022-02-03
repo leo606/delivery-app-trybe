@@ -1,10 +1,25 @@
 .order-details-header {
   align-items: center;
-  background-color: lightgray;
+  background-color: #fdfdf8;
+  border: solid 1px lightgrey;
+  border-radius: 6px;
+  box-shadow: 0 0 9px lightgrey;
+  color: #1b1c33;
   display: flex;
-  justify-content: space-around;
+  font-weight: 600;
+  justify-content: space-between;
   margin-bottom: 1em;
+  padding: 0.6em;
   width: 60vw;
+}
+
+.order-details-header button {
+  background-color: #28c641;
+  border: none;
+  border-radius: 6px;
+  color: #1b1c33;
+  font-weight: 600;
+  height: 2.5em;
 }
 
 table {

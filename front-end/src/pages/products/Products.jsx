@@ -74,6 +74,7 @@ function Products() {
           disabled={ checkCartValue(calcTotal(cart)) }
         >
           Ver carrinho:
+          {' '}
           <span
             data-testid="customer_products__checkout-bottom-value"
           >
