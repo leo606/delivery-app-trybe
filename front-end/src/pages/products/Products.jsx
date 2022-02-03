@@ -7,6 +7,7 @@ import Header from '../../components/header/Header';
 import ProductCard from './ProductCard';
 import getLocalStorage from '../../helpers/getLocalStorage';
 import formatCurrency from '../../helpers/formatCurrency';
+import './Products.css';
 
 const PRODUCTS_URL = 'http://localhost:3001/products';
 
@@ -55,7 +56,7 @@ function Products() {
   return (
     <div>
       <Header />
-      <div>
+      <div className="productList">
         { products.map((product, i) => (
           <ProductCard
             product={ product }
@@ -63,20 +64,23 @@ function Products() {
             index={ i }
           />))}
       </div>
-      <button
-        type="button"
-        to="/customer/checkout"
-        data-testid="customer_products__button-cart"
-        onClick={ checkoutButton }
-        disabled={ checkCartValue(calcTotal(cart)) }
-      >
-        Ver carrinho:
-        <span
-          data-testid="customer_products__checkout-bottom-value"
+      <div className="cartDiv">
+        <button
+          type="button"
+          className="btnCart"
+          to="/customer/checkout"
+          data-testid="customer_products__button-cart"
+          onClick={ checkoutButton }
+          disabled={ checkCartValue(calcTotal(cart)) }
         >
-          { `${formatCurrency(calcTotal(cart))}` }
-        </span>
-      </button>
+          Ver carrinho:
+          <span
+            data-testid="customer_products__checkout-bottom-value"
+          >
+            { `${formatCurrency(calcTotal(cart))}` }
+          </span>
+        </button>
+      </div>
     </div>
   );
 }
