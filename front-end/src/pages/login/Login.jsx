@@ -54,6 +54,7 @@ function Login() {
   return (
     <div className="loginComponent">
       <form id="loginForm" className="loginForm">
+        <img src="/logo.svg" alt="DD logo" />
         <div id="inputs" className="inputs">
           <input
             type="email"

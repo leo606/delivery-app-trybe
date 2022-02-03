@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="120"
+   height="120"
+   viewBox="0 0 120 120"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20)"
+   sodipodi:docname="drawing.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#999999"
+     borderopacity="1"
+     inkscape:pageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="px"
+     showgrid="false"
+     inkscape:zoom="3.2526912"
+     inkscape:cx="54.723916"
+     inkscape:cy="59.028044"
+     inkscape:window-width="1781"
+     inkscape:window-height="1022"
+     inkscape:window-x="0"
+     inkscape:window-y="24"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:#e6da29;fill-opacity:1;stroke-width:27.6271;stroke-linecap:square;stroke-linejoin:round;paint-order:markers stroke fill"
+       id="rect7581"
+       width="130"
+       height="130"
+       x="-5"
+       y="-7.270318"
+       ry="13.61297" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:94.3437px;line-height:1.25;font-family:sans-serif;fill:#d32734;fill-opacity:1;stroke:none;stroke-width:2.35859"
+       x="6.5824604"
+       y="67.164299"
+       id="text1838-6"
+       transform="skewX(-13.560542)"><tspan
+         sodipodi:role="line"
+         id="tspan1836-2"
+         x="6.5824604"
+         y="67.164299"
+         style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-family:'Fira Sans';-inkscape-font-specification:'Fira Sans Medium';fill:#d32734;fill-opacity:1;stroke-width:2.35859">DD</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:94.3437px;line-height:1.25;font-family:sans-serif;fill:#1b1c33;fill-opacity:1;stroke:none;stroke-width:2.35859"
+       x="10.241553"
+       y="64.67498"
+       id="text1838"
+       transform="skewX(-13.560542)"><tspan
+         sodipodi:role="line"
+         id="tspan1836"
+         x="10.241553"
+         y="64.67498"
+         style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-family:'Fira Sans';-inkscape-font-specification:'Fira Sans Medium';fill:#1b1c33;fill-opacity:1;stroke-width:2.35859">DD</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:34.0506px;line-height:1.25;font-family:sans-serif;fill:#1b1c33;fill-opacity:1;stroke:none;stroke-width:0.851263"
+       x="33.804829"
+       y="96.334518"
+       id="text1838-3"
+       transform="matrix(0.90158579,0,-0.33732709,1.1091568,0,0)"><tspan
+         sodipodi:role="line"
+         id="tspan1836-6"
+         x="33.804829"
+         y="96.334518"
+         style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-family:'Fira Sans';-inkscape-font-specification:'Fira Sans Semi-Bold';fill:#1b1c33;fill-opacity:1;stroke-width:0.851263">Delivery</tspan></text>
+  </g>
+</svg>

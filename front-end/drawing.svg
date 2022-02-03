@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="123.64207"
+   height="123.64207"
+   viewBox="0 0 123.64207 123.64207"
+   version="1.1"
+   id="svg5"
+   sodipodi:docname="drawing.svg"
+   inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#999999"
+     borderopacity="1"
+     inkscape:pageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="px"
+     showgrid="false"
+     inkscape:zoom="4.6"
+     inkscape:cx="55.434783"
+     inkscape:cy="59.565217"
+     inkscape:window-width="1781"
+     inkscape:window-height="1022"
+     inkscape:window-x="0"
+     inkscape:window-y="24"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer1"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-1.61507,-1.4215394)">
+    <rect
+       style="fill:#e6da29;fill-opacity:1;stroke-width:26.276;stroke-linecap:square;stroke-linejoin:round;paint-order:markers stroke fill"
+       id="rect7581"
+       width="123.64207"
+       height="123.64207"
+       x="1.61507"
+       y="1.4215394"
+       ry="12.947197"
+       inkscape:export-filename="/home/leo/projetos/sd-012-project-delivery-app/front-end/logo/dd_logo.png"
+       inkscape:export-xdpi="599.6308"
+       inkscape:export-ydpi="599.6308" />
+    <g
+       id="g13103"
+       transform="matrix(0.9345867,0,0,1,1.3634553,1.0869565)">
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:89.7297px;line-height:1.25;font-family:sans-serif;fill:#d32734;fill-opacity:1;stroke:none;stroke-width:2.24324"
+         x="14.641748"
+         y="72.215759"
+         id="text1838-6"
+         transform="skewX(-13.560542)"
+         inkscape:export-filename="/home/leo/projetos/sd-012-project-delivery-app/front-end/logo/dd_logo.png"
+         inkscape:export-xdpi="599.6308"
+         inkscape:export-ydpi="599.6308"><tspan
+           sodipodi:role="line"
+           id="tspan1836-2"
+           x="14.641748"
+           y="72.215759"
+           style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-family:'Fira Sans';-inkscape-font-specification:'Fira Sans Medium';fill:#d32734;fill-opacity:1;stroke-width:2.24324">DD</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:89.7297px;line-height:1.25;font-family:sans-serif;fill:#1b1c33;fill-opacity:1;stroke:none;stroke-width:2.24324"
+         x="18.121883"
+         y="69.84819"
+         id="text1838"
+         transform="skewX(-13.560542)"
+         inkscape:export-filename="/home/leo/projetos/sd-012-project-delivery-app/front-end/logo/dd_logo.png"
+         inkscape:export-xdpi="599.6308"
+         inkscape:export-ydpi="599.6308"><tspan
+           sodipodi:role="line"
+           id="tspan1836"
+           x="18.121883"
+           y="69.84819"
+           style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-family:'Fira Sans';-inkscape-font-specification:'Fira Sans Medium';fill:#1b1c33;fill-opacity:1;stroke-width:2.24324">DD</tspan></text>
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:32.3853px;line-height:1.25;font-family:sans-serif;fill:#1b1c33;fill-opacity:1;stroke:none;stroke-width:0.80963"
+       x="42.029495"
+       y="99.138939"
+       id="text1838-3"
+       transform="matrix(0.90158579,0,-0.33732709,1.1091568,0,0)"
+       inkscape:export-filename="/home/leo/projetos/sd-012-project-delivery-app/front-end/logo/dd_logo.png"
+       inkscape:export-xdpi="599.6308"
+       inkscape:export-ydpi="599.6308"><tspan
+         sodipodi:role="line"
+         id="tspan1836-6"
+         x="42.029495"
+         y="99.138939"
+         style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-family:'Fira Sans';-inkscape-font-specification:'Fira Sans Semi-Bold';fill:#1b1c33;fill-opacity:1;stroke-width:0.80963">Delivery</tspan></text>
+  </g>
+</svg>

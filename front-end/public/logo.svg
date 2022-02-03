@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="124" height="124" version="1.1" viewBox="0 0 124 124" xmlns="http://www.w3.org/2000/svg">
+ <g transform="translate(-1.62 -1.42)">
+  <rect x="1.62" y="1.42" width="124" height="124" ry="12.9" fill="#e6da29" stroke-linecap="square" stroke-linejoin="round" stroke-width="26.3" style="paint-order:markers stroke fill"/>
+  <g transform="matrix(.935 0 0 1 1.36 1.09)" font-family="sans-serif" font-size="89.7px" stroke-width="2.24">
+   <text transform="skewX(-13.6)" x="14.641748" y="72.215759" fill="#d32734" style="line-height:1.25" xml:space="preserve"><tspan x="14.641748" y="72.215759" fill="#d32734" font-family="'Fira Sans'" font-weight="500" stroke-width="2.24">DD</tspan></text>
+   <text transform="skewX(-13.6)" x="18.121883" y="69.84819" fill="#1b1c33" style="line-height:1.25" xml:space="preserve"><tspan x="18.121883" y="69.84819" fill="#1b1c33" font-family="'Fira Sans'" font-weight="500" stroke-width="2.24">DD</tspan></text>
+  </g>
+  <text transform="matrix(.902 0 -.337 1.11 0 0)" x="42.029495" y="99.138939" fill="#1b1c33" font-family="sans-serif" font-size="32.4px" stroke-width=".81" style="line-height:1.25" xml:space="preserve"><tspan x="42.029495" y="99.138939" fill="#1b1c33" font-family="'Fira Sans'" font-weight="600" stroke-width=".81">Delivery</tspan></text>
+ </g>
+</svg>
