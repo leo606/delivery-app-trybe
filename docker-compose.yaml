@@ -1,25 +1,32 @@
 version: '3'
+
 services:
   database:
-    image: mysql
+    build: ./back-end/src/database
     restart: always
+    command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    cap_add:
+      - SYS_NICE  # CAP_SYS_NICE
     environment:
       MYSQL_ROOT_PASSWORD: rootpw
       MYSQL_DATABASE: delivery-app
+
   backend:
-    build: ./back-end
     environment:
       - NODE_ENV=production
-      - API_PORT=3002
+      - PORT=3001
       - MYSQL_HOST=database
       - MYSQL_PORT=3306
       - MYSQL_USER=root
       - MYSQL_PASSWORD=rootpw
       - MYSQL_DB_NAME=delivery-app
+    build: ./back-end
     ports:
       - "3001:3001"
     depends_on:
       - database
+    restart: always
+
   frontend:
     build: ./front-end
     depends_on:
