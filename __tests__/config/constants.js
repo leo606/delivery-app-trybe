@@ -5,6 +5,7 @@ const {
   NODE_ENV,
   MYSQL_DB_NAME,
   EVAL_ALWAYS_RESTORE_DEV_DB,
+  HOSTNAME,
   MYSQL_HOST,
   MYSQL_PORT,
   MYSQL_USER,
@@ -46,7 +47,7 @@ module.exports = {
       : ["development", "dev"].includes(environment)
       ? EVAL_ALWAYS_RESTORE_DEV_DB === "true"
       : true,
-    host: MYSQL_HOST || "localhost",
+    host: HOSTNAME || MYSQL_HOST || "localhost",
     port: MYSQL_PORT || "3306",
     user: MYSQL_USER || "root",
     password: MYSQL_PASSWORD || "",
