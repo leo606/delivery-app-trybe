@@ -5,6 +5,6 @@ COPY package*.json ./
 RUN npm install
 COPY ./ ./
 
-ENTRYPOINT [ "node", "." ]
+ENTRYPOINT [ "npm", "run", "start:docker" ]
 
 # "npx" "sequelize-cli" "db:create" "&&" "npx" "sequelize-cli" "db:migrate" "&&" "npx" "sequelize-cli" "db:seed"
